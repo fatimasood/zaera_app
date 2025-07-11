@@ -11,7 +11,7 @@ Whether it’s trips, rent, or food with friends — Zaera helps you split, trac
 - Add expenses with equal, percentage, or custom split
 - Auto-calculates who owes what
 - Send polite payment reminders
-- (Upcoming) Easypaia, Jazzcash etc
+- Easypaia, Jazzcash etc
 
 ---
 
