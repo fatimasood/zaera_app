@@ -32,5 +32,5 @@ UI design is complete. Core features are being built step-by-step.
 
 **Fatima Masood**  
 Software Developer
-[LinkedIn]([https://www.linkedin.com/in/fatimamasoodfm/]) • [Zaera](https://www.linkedin.com/company/zaera-ap/)
+[LinkedIn](https://www.linkedin.com/in/fatimamasoodfm/) • [Zaera](https://www.linkedin.com/company/zaera-ap/)
 
