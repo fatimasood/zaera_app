@@ -1,16 +1,36 @@
-# zaera_app
+# Zaera — Peace Over Pennies 🤎
 
-A new Flutter project.
+Zaera is a smart expense-sharing app built with Flutter.  
+Whether it’s trips, rent, or food with friends — Zaera helps you split, track, and settle up without awkwardness.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🔑 Features
 
-A few resources to get you started if this is your first Flutter project:
+- Create custom groups (e.g. "Spain Trip", "Hostel Rent")
+- Add expenses with equal, percentage, or custom split
+- Auto-calculates who owes what
+- Send polite payment reminders
+- (Upcoming) Easypaia, Jazzcash etc
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚧 Status
+
+Zaera is currently in development.  
+UI design is complete. Core features are being built step-by-step.
+
+---
+
+## ⚙️ Built With
+
+- Flutter and love :)
+
+---
+
+## 📬 Contact
+
+**Fatima Masood**  
+Software Developer
+[LinkedIn]([https://www.linkedin.com/in/fatimamasoodfm/]) • [Zaera](https://www.linkedin.com/company/zaera-ap/)
+
