@@ -22,10 +22,6 @@ UI design is complete. Core features are being built step-by-step.
 
 ---
 
-## 🤎 Logo
-
-![Zaera](https://github.com/user-attachments/assets/2f2046b5-ed6d-40b5-bf59-8a6d65ead71e)
-
 ## 🤎 Some Designs
 
 ![Main Home](https://github.com/user-attachments/assets/e2dd175e-8e18-4aa6-bc29-2be1021c19cd)                    <img width="402" height="874" alt="Add group (2)" src="https://github.com/user-attachments/assets/032eff46-f08e-4a34-8875-129558967a49" />
