@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:zaera_app/app/routes.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 
 // Fake providers for now
@@ -49,6 +48,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         child: Center(
           child: Lottie.asset(
             'lib/assets/animations/zaera_splash.json',
+            repeat: false,
             width: 200,
             height: 200,
             fit: BoxFit.contain,
