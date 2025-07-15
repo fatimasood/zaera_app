@@ -5,6 +5,6 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SafeArea(child: Text("Signup Screen"));
   }
 }
