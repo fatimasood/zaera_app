@@ -28,7 +28,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (kDebugMode) {
       print("Splash started...");
     }
-    await Future.delayed(const Duration(seconds: 8));
+    await Future.delayed(const Duration(seconds: 6));
 
     final isFirstTime = ref.read(isFirstTimeUserProvider);
     final isLoggedIn = ref.read(isLoggedInProvider);
