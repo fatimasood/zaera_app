@@ -29,7 +29,7 @@ class AppTheme {
         bodyLarge: GoogleFonts.inter(
           fontSize: 16,
           fontWeight: FontWeight.normal,
-          color: AppColors.brown,
+          color: AppColors.tealGreen,
         ).copyWith(inherit: true),
         bodyMedium: GoogleFonts.inter(
           fontSize: 14,
@@ -83,6 +83,46 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
+        ),
+      ),
+
+      //form field theme
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 18,
+          horizontal: 20,
+        ),
+        filled: true,
+        fillColor: Colors.transparent,
+        labelStyle: GoogleFonts.inter(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: AppColors.brown,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(color: AppColors.brown.withOpacity(0.5)),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(color: AppColors.brown.withOpacity(0.5)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(color: AppColors.brown, width: 1.5),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(color: Colors.red, width: 2),
+        ),
+        hintStyle: GoogleFonts.inter(
+          fontSize: 14,
+          color: AppColors.brown.withOpacity(0.6),
+          fontWeight: FontWeight.normal,
         ),
       ),
     );
