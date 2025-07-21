@@ -7,6 +7,7 @@ class AppTheme {
     return ThemeData(
       scaffoldBackgroundColor: AppColors.background,
       primaryColor: AppColors.brown,
+
       hintColor: AppColors.musteredGreen,
 
       textTheme: TextTheme(
@@ -43,7 +44,7 @@ class AppTheme {
         ).copyWith(inherit: true),
 
         labelLarge: GoogleFonts.inter(
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.w600,
           color: AppColors.background,
         ).copyWith(inherit: true),
@@ -53,12 +54,12 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.musteredGreen,
           foregroundColor: AppColors.background,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          // padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
           textStyle: TextStyle(
-            fontSize: 18.0,
+            fontSize: 17.0,
             fontWeight: FontWeight.w600,
             fontFamily: "Inter",
           ),
@@ -95,7 +96,7 @@ class AppTheme {
         filled: true,
         fillColor: Colors.transparent,
         labelStyle: GoogleFonts.inter(
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: FontWeight.w500,
           color: AppColors.brown,
         ),
@@ -124,6 +125,14 @@ class AppTheme {
           color: AppColors.brown.withOpacity(0.6),
           fontWeight: FontWeight.normal,
         ),
+      ),
+
+      //cgeckbox
+      checkboxTheme: CheckboxThemeData(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        fillColor: WidgetStatePropertyAll(AppColors.tealGreen),
+        checkColor: WidgetStatePropertyAll(AppColors.background),
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
     );
   }
