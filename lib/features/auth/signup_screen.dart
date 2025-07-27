@@ -52,6 +52,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Expanded(
@@ -69,7 +70,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       width: logoSize,
                       height: logoSize,
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 20),
 
                     // HEADING
                     Text(
@@ -79,19 +80,19 @@ class _SignupScreenState extends State<SignupScreen> {
                     const SizedBox(height: 30),
 
                     // INPUT FIELDS
-                    customInput(
+                    CustomInput(
                       label: 'Name',
                       hint: 'User',
                       onChanged: (val) {},
                     ),
-                    const SizedBox(height: 15),
-                    customInput(
+                    const SizedBox(height: 20),
+                    CustomInput(
                       label: 'Email',
                       hint: 'you@example.com',
                       onChanged: (val) {},
                     ),
-                    const SizedBox(height: 15),
-                    customInput(
+                    const SizedBox(height: 20),
+                    CustomInput(
                       label: 'Password',
                       hint: 'Enter strong password...',
                       obscureText: true,
@@ -119,7 +120,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 50),
 
                     // BUTTON
                     SizedBox(
@@ -127,7 +128,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       height: buttonHeight,
                       child: ElevatedButton(
                         onPressed: () {
-                          // signup logic
+                          context.goNamed('home');
                         },
                         child: Text(
                           "Sign Up",

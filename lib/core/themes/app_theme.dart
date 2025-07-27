@@ -7,8 +7,12 @@ class AppTheme {
     return ThemeData(
       scaffoldBackgroundColor: AppColors.background,
       primaryColor: AppColors.brown,
+      secondaryHeaderColor: AppColors.musteredGreen,
 
       hintColor: AppColors.musteredGreen,
+      brightness: Brightness.light,
+
+      iconTheme: IconThemeData(color: AppColors.musteredGreen, size: 13),
 
       textTheme: TextTheme(
         displayLarge: GoogleFonts.urbanist(
@@ -97,16 +101,16 @@ class AppTheme {
         fillColor: Colors.transparent,
         labelStyle: GoogleFonts.inter(
           fontSize: 14,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.normal,
           color: AppColors.brown,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: BorderSide(color: AppColors.brown.withOpacity(0.5)),
+          borderSide: BorderSide(color: AppColors.brown),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: BorderSide(color: AppColors.brown.withOpacity(0.5)),
+          borderSide: BorderSide(color: AppColors.brown),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),

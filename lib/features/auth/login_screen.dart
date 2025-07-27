@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zaera_app/core/constant.dart';
+import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/widgets/custom_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,38 +13,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String password = '';
-  String passwordStrength = 'Set Strong Password..!!';
-
-  Color getStrengthColor(String strength) {
-    switch (strength) {
-      case 'Uncrackable :)':
-        return Colors.purple;
-      case 'Kinda Safe :|':
-        return Colors.orange;
-
-      case 'Too Soft :(':
-        return Colors.pinkAccent;
-      default:
-        return Colors.red;
-    }
-  }
-
-  String checkPasswordStrength(String password) {
-    bool hasUpper = password.contains(RegExp(r'[A-Z]'));
-    bool hasLower = password.contains(RegExp(r'[a-z]'));
-    bool hasDigit = password.contains(RegExp(r'[0-9]'));
-    bool hasSpecial = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
-
-    int strength =
-        [hasUpper, hasLower, hasDigit, hasSpecial].where((e) => e).length;
-
-    if (password.length >= 8 && strength == 4) return 'Uncrackable :)';
-    if (password.length >= 6 && strength >= 2) return 'Kinda Safe :|';
-    if (password.isNotEmpty && strength >= 1) return 'Too Soft :(';
-    return 'Set Strong Password..!!';
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -52,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Expanded(
@@ -73,30 +43,77 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // HEADING
                     Text(
+                      'Hey Fatema',
+                      style: GoogleFonts.urbanist(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                        color: AppColors.brown,
+                      ),
+                    ),
+                    const SizedBox(height: 6.0),
+                    Text(
                       'Welcome Back',
                       style: Theme.of(context).textTheme.displayLarge,
                     ),
                     const SizedBox(height: 30),
 
-                    customInput(
+                    CustomInput(
                       label: 'Email',
-                      hint: 'you@example.com',
+                      hint: 'Your registered mail...',
                       onChanged: (val) {},
                     ),
-                    const SizedBox(height: 15),
-                    customInput(
+                    const SizedBox(height: 20),
+                    CustomInput(
                       label: 'Password',
-                      hint: 'Enter strong password...',
+                      hint: 'Enter your password...',
                       obscureText: true,
-                      onChanged: (val) {
-                        setState(() {
-                          password = val;
-                          passwordStrength = checkPasswordStrength(val);
-                        });
-                      },
+                      onChanged: (val) {},
                     ),
 
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 3.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: true,
+                              onChanged: (val) {
+                                //logic here
+                              },
+                            ),
+
+                            Text(
+                              "Remember Me",
+                              style: GoogleFonts.inter(
+                                color: AppColors.tealGreen,
+                                fontSize: 12.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 7.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                // Reset Password
+                              },
+                              child: Text(
+                                "Reset Password",
+                                style: GoogleFonts.inter(
+                                  color: AppColors.tealGreen,
+                                  fontSize: 12.5,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 50),
 
                     // BUTTON
                     SizedBox(
@@ -104,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: buttonHeight,
                       child: ElevatedButton(
                         onPressed: () {
-                          // signup logic
+                          context.goNamed('home');
                         },
                         child: Text(
                           "Log In",
