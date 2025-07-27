@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CreateGroupScreen extends StatelessWidget {
-  const CreateGroupScreen({super.key});
+class AllGroups extends StatelessWidget {
+  const AllGroups({super.key});
 
   @override
   Widget build(BuildContext context) {

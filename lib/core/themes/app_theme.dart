@@ -138,6 +138,33 @@ class AppTheme {
         checkColor: WidgetStatePropertyAll(AppColors.background),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
+
+      //bottom navigation theme
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: AppColors.musteredGreen,
+        selectedItemColor: AppColors.whiteskin,
+        unselectedItemColor: AppColors.background,
+        selectedLabelStyle: GoogleFonts.inter(
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+        ),
+        unselectedLabelStyle: GoogleFonts.inter(
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
+        ),
+        type: BottomNavigationBarType.fixed,
+        elevation: 10,
+        showUnselectedLabels: true,
+      ),
+
+      //drawar theme
+      drawerTheme: DrawerThemeData(
+        backgroundColor: AppColors.musteredGreen,
+        elevation: 8,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.horizontal(right: Radius.circular(24)),
+        ),
+      ),
     );
   }
 }
