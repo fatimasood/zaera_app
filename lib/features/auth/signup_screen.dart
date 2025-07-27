@@ -40,7 +40,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     if (password.length >= 8 && strength == 4) return 'Uncrackable :)';
     if (password.length >= 6 && strength >= 2) return 'Kinda Safe :|';
-    if (password.length >= 1 && strength >= 1) return 'Too Soft :(';
+    if (password.isNotEmpty && strength >= 1) return 'Too Soft :(';
     return 'Set Strong Password..!!';
   }
 
