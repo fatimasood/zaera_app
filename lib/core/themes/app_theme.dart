@@ -146,7 +146,7 @@ class AppTheme {
         unselectedItemColor: AppColors.background,
         selectedLabelStyle: GoogleFonts.inter(
           fontWeight: FontWeight.w700,
-          fontSize: 14,
+          fontSize: 15,
         ),
         unselectedLabelStyle: GoogleFonts.inter(
           fontWeight: FontWeight.w500,
@@ -164,6 +164,19 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.horizontal(right: Radius.circular(24)),
         ),
+      ),
+
+      //app bar
+      appBarTheme: AppBarTheme(
+        backgroundColor: AppColors.musteredGreen,
+        foregroundColor: AppColors.background,
+        elevation: 0,
+        titleTextStyle: GoogleFonts.inter(
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+          color: AppColors.background,
+        ),
+        iconTheme: IconThemeData(color: AppColors.background),
       ),
     );
   }
