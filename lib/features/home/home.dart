@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zaera_app/app/about_us.dart';
 import 'package:zaera_app/features/group/all_groups.dart';
 import 'package:zaera_app/features/home/home_view.dart';
 import 'package:zaera_app/features/profile/user_profile.dart';
+import 'package:zaera_app/features/settings/settings.dart';
 import 'package:zaera_app/utils/bottom_navigationbar.dart';
 import 'package:zaera_app/utils/drawar.dart';
 
@@ -18,9 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = [
     HomeView(),
-    AllGroups(),
-    //ExpensesView(),
     UserProfile(),
+    AllGroups(),
+    Settings(),
+    AboutUs(),
   ];
 
   void _onBottomNavItemTapped(int index) {
@@ -43,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(),
+
         bottomNavigationBar: BottomNavBar(
           selectedIndex: _selectedIndex,
           onItemTapped: _onBottomNavItemTapped,
