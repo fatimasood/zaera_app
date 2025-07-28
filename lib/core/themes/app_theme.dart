@@ -16,18 +16,18 @@ class AppTheme {
 
       textTheme: TextTheme(
         displayLarge: GoogleFonts.urbanist(
-          fontSize: 28,
+          fontSize: 35,
           fontWeight: FontWeight.w800,
           color: AppColors.brown,
         ).copyWith(inherit: true),
-        displayMedium: GoogleFonts.urbanist(
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
+        displayMedium: GoogleFonts.inter(
+          fontSize: 30,
+          fontWeight: FontWeight.normal,
           color: AppColors.brown,
         ).copyWith(inherit: true),
-        displaySmall: GoogleFonts.urbanist(
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
+        displaySmall: GoogleFonts.inter(
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
           color: AppColors.brown,
         ).copyWith(inherit: true),
 
@@ -177,6 +177,11 @@ class AppTheme {
           color: AppColors.background,
         ),
         iconTheme: IconThemeData(color: AppColors.background),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: AppColors.tealGreen,
+        foregroundColor: AppColors.background,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }

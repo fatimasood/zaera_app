@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zaera_app/core/themes/colors.dart';
+import 'package:zaera_app/features/home/widgets/greetings.dart';
+import 'package:zaera_app/features/home/widgets/header.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -7,7 +10,28 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(child: Text('Home View', style: TextStyle(fontSize: 24))),
+        backgroundColor: AppColors.background,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+          child: Column(
+            children: [
+              SizedBox(height: 15),
+              TopBarHeader(),
+              SizedBox(height: 15),
+              Greetings(),
+              /* FloatingActionButton(
+                onPressed: () {
+                  //add group action
+                },
+                child: Image.asset(
+                  'lib/assets/images/addgroup.png',
+                  width: 40,
+                  height: 40,
+                ),
+              ),*/
+            ],
+          ),
+        ),
       ),
     );
   }

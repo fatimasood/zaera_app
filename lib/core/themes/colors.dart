@@ -8,3 +8,5 @@ class AppColors {
   static const Color background = Color(0xFFF7F4EF);
   static const Color mocha = Color(0xFF795548);
 }
+
+// static const Color tealGreen = Color(0xFF00796B);
