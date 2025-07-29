@@ -181,7 +181,7 @@ class AppTheme {
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: AppColors.tealGreen,
         foregroundColor: AppColors.background,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       ),
     );
   }

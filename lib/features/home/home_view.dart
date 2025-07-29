@@ -3,6 +3,7 @@ import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/home/widgets/greetings.dart';
 import 'package:zaera_app/features/home/widgets/header.dart';
 import 'package:zaera_app/features/home/widgets/shared_expenses.dart';
+import 'package:zaera_app/features/home/widgets/updates.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -22,14 +23,19 @@ class HomeView extends StatelessWidget {
               Greetings(),
               SizedBox(height: 20),
               SharedExpenses(),
-              /* FloatingActionButton(
-                onPressed: () {
-                  //add group action
-                },
-                child: Image.asset(
-                  'lib/assets/images/addgroup.png',
-                  width: 40,
-                  height: 40,
+              SizedBox(height: 15),
+              Updates(),
+              /* Align(
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    //add group action
+                  },
+                  child: Image.asset(
+                    'lib/assets/images/addgroup.png',
+                    width: 40,
+                    height: 40,
+                  ),
                 ),
               ),*/
             ],
