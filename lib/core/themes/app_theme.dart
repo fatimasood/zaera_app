@@ -179,7 +179,9 @@ class AppTheme {
         iconTheme: IconThemeData(color: AppColors.background),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: AppColors.tealGreen,
+        sizeConstraints: BoxConstraints.tightFor(width: 60, height: 60),
+        backgroundColor: AppColors.musteredGreen.withOpacity(0.75),
+        elevation: 6,
         foregroundColor: AppColors.background,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       ),

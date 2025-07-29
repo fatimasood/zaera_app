@@ -14,31 +14,36 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double navItemWidth = MediaQuery.of(context).size.width / 5;
     return Padding(
-      padding: EdgeInsets.all(20.0),
-      child: Container(
-        height: 70,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: AppColors.musteredGreen,
-          boxShadow: [
-            BoxShadow(
-              // ignore: deprecated_member_use
-              color: Colors.grey.withOpacity(0.75),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            buildNavItem(Icons.home_outlined, "Home", 0),
-            buildNavItem(Icons.person_4_outlined, "Profile", 1),
-            buildNavItem(Icons.group_add_outlined, "Groups", 2),
-            buildNavItem(Icons.settings_outlined, "Settings", 3),
-          ],
+      padding: EdgeInsets.all(15.0),
+      child: ClipPath(
+        clipper: BottomNavBarClipper(),
+        child: Container(
+          height: 75,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: AppColors.musteredGreen,
+            boxShadow: [
+              BoxShadow(
+                // ignore: deprecated_member_use
+                color: Colors.grey.withOpacity(0.65),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              buildNavItem(Icons.home_outlined, "Home", 0),
+              buildNavItem(Icons.person_4_outlined, "Profile", 1),
+              SizedBox(width: navItemWidth * 0.8),
+              buildNavItem(Icons.group_add_outlined, "Groups", 2),
+              buildNavItem(Icons.settings_outlined, "Settings", 3),
+            ],
+          ),
         ),
       ),
     );
@@ -73,4 +78,45 @@ class BottomNavBar extends StatelessWidget {
       ),
     );
   }
+}
+
+class BottomNavBarClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final double fabRadius = 38;
+    final double curveDepth = 45;
+
+    final path = Path();
+    path.lineTo((size.width / 2) - fabRadius - 15, 0);
+
+    path.quadraticBezierTo(
+      size.width / 2 - fabRadius,
+      0,
+      size.width / 2 - fabRadius + 5,
+      curveDepth - 5,
+    );
+
+    path.arcToPoint(
+      Offset(size.width / 2 + fabRadius - 5, curveDepth - 5),
+      radius: Radius.circular(40),
+      clockwise: false,
+    );
+
+    path.quadraticBezierTo(
+      size.width / 2 + fabRadius,
+      0,
+      (size.width / 2) + fabRadius + 15,
+      0,
+    );
+
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }

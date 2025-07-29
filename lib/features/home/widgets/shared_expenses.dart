@@ -46,7 +46,7 @@ class _SharedExpensesState extends State<SharedExpenses> {
 
         // Scrollable List
         SizedBox(
-          height: 200,
+          height: 180,
           width: double.infinity,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -77,7 +77,7 @@ class _SharedExpensesState extends State<SharedExpenses> {
                               color: AppColors.musteredGreen,
                               width: 1.5,
                             )
-                            : Border.all(color: AppColors.brown, width: 1.5),
+                            : Border.all(color: AppColors.brown, width: 1),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.75),
@@ -88,32 +88,59 @@ class _SharedExpensesState extends State<SharedExpenses> {
                     ],
                   ),
                   child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Expense ${index + 1}',
-                          style: GoogleFonts.urbanist(
-                            color:
-                                isSelected
-                                    ? AppColors.background
-                                    : AppColors.brown,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20, bottom: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Spain Trip',
+                            style: GoogleFonts.urbanist(
+                              color:
+                                  isSelected
+                                      ? AppColors.background
+                                      : AppColors.brown,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          '\$${(index + 1) * 10}',
-                          style: GoogleFonts.urbanist(
-                            color:
-                                isSelected
-                                    ? AppColors.background
-                                    : AppColors.brown.withOpacity(0.8),
-                            fontSize: 16,
+                          const SizedBox(height: 8),
+                          Text(
+                            'Total Expense: 300 pkr',
+                            style: GoogleFonts.inter(
+                              color:
+                                  isSelected
+                                      ? AppColors.background
+                                      : AppColors.brown.withOpacity(0.8),
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
-                        ),
-                      ],
+                          Text(
+                            'Your share: 100 pkr',
+                            style: GoogleFonts.inter(
+                              color:
+                                  isSelected
+                                      ? AppColors.background
+                                      : AppColors.brown.withOpacity(0.8),
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          Text(
+                            'Your Status: Pending',
+                            style: GoogleFonts.inter(
+                              color:
+                                  isSelected
+                                      ? AppColors.background
+                                      : AppColors.brown.withOpacity(0.8),
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

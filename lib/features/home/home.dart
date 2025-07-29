@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaera_app/app/about_us.dart';
+import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/group/all_groups.dart';
 import 'package:zaera_app/features/home/home_view.dart';
 import 'package:zaera_app/features/profile/user_profile.dart';
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-
+        backgroundColor: AppColors.background,
         bottomNavigationBar: BottomNavBar(
           selectedIndex: _selectedIndex,
           onItemTapped: _onBottomNavItemTapped,
@@ -65,6 +66,31 @@ class _HomeScreenState extends State<HomeScreen> {
             });
           },
         ),
+
+        floatingActionButton: Transform.translate(
+          offset: Offset(0, 22), // push FAB down by 8px
+          child: SizedBox(
+            height: 62,
+            width: 62,
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AllGroups()),
+                );
+              },
+              backgroundColor: AppColors.musteredGreen,
+              shape: CircleBorder(),
+              child: Image.asset(
+                'lib/assets/images/addgroup.png',
+                width: 47,
+                height: 47,
+              ),
+            ),
+          ),
+        ),
+
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
   }

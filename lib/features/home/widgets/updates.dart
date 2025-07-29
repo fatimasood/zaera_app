@@ -20,12 +20,12 @@ class Updates extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Container(
-          height: 225,
+          height: 237,
           width: double.infinity,
           margin: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: AppColors.brown, width: 1.5),
+            border: Border.all(color: AppColors.brown, width: 1),
             color: AppColors.background,
             boxShadow: [
               BoxShadow(
