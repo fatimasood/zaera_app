@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zaera_app/app/about_us.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/group/all_groups.dart';
+import 'package:zaera_app/features/group/widgets/create_group.dart';
 import 'package:zaera_app/features/home/home_view.dart';
 import 'package:zaera_app/features/profile/user_profile.dart';
 import 'package:zaera_app/features/settings/settings.dart';
@@ -68,16 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         floatingActionButton: Transform.translate(
-          offset: Offset(0, 22), // push FAB down by 8px
+          offset: Offset(0, 22), // push FAB down
           child: SizedBox(
             height: 62,
             width: 62,
             child: FloatingActionButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AllGroups()),
-                );
+                showCreateGroupDialog(context);
               },
               backgroundColor: AppColors.musteredGreen,
               shape: CircleBorder(),
