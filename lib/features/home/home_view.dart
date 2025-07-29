@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/home/widgets/greetings.dart';
 import 'package:zaera_app/features/home/widgets/header.dart';
+import 'package:zaera_app/features/home/widgets/shared_expenses.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -19,6 +20,8 @@ class HomeView extends StatelessWidget {
               TopBarHeader(),
               SizedBox(height: 15),
               Greetings(),
+              SizedBox(height: 20),
+              SharedExpenses(),
               /* FloatingActionButton(
                 onPressed: () {
                   //add group action
