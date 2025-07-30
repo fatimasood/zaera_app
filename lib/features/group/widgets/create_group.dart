@@ -1,58 +1,92 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 
 void showCreateGroupDialog(BuildContext context) {
   showGeneralDialog(
     context: context,
     barrierDismissible: true,
-
-    barrierLabel: 'Create Group',
-    transitionDuration: const Duration(milliseconds: 300),
-    pageBuilder: (_, __, ___) {
-      return const SizedBox.shrink(); // We’ll build UI inside transitionBuilder
+    barrierLabel: "Create Group",
+    barrierColor: Colors.black.withOpacity(0.4),
+    pageBuilder: (context, animation, secondaryAnimation) {
+      return BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+        child: const SizedBox(),
+      );
     },
     transitionBuilder: (context, animation, secondaryAnimation, child) {
-      return BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-        child: FadeTransition(
-          opacity: animation,
-          child: ScaleTransition(
-            scale: CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeOutBack,
-            ),
-            child: Center(
-              child: CreateGroupPopup(), // 👇 This is your custom popup widget
-            ),
-          ),
+      return ScaleTransition(
+        scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
+        child: Opacity(
+          opacity: animation.value,
+          child: const Center(child: CreateGroupDialog()),
         ),
       );
     },
+    transitionDuration: const Duration(milliseconds: 400),
   );
 }
 
-class CreateGroupPopup extends StatelessWidget {
-  const CreateGroupPopup({super.key});
+class CreateGroupDialog extends StatefulWidget {
+  const CreateGroupDialog({super.key});
+
+  @override
+  State<CreateGroupDialog> createState() => _CreateGroupDialogState();
+}
+
+class _CreateGroupDialogState extends State<CreateGroupDialog> {
+  final TextEditingController _groupNameController = TextEditingController();
+  String? _generatedLink;
+  bool _linkGenerated = false;
+
+  String _generateFakeShortLink(String groupName) {
+    // Just a demo — in real life, call backend or Firebase Dynamic Link
+    final random = Random();
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    String randomCode =
+        List.generate(6, (_) => chars[random.nextInt(chars.length)]).join();
+    return 'https://zaera.app/g/$randomCode';
+  }
+
+  void _handlePrimaryButton() {
+    if (_linkGenerated) {
+      Clipboard.setData(ClipboardData(text: _generatedLink!));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Link copied to clipboard!")),
+      );
+    } else {
+      final groupName = _groupNameController.text.trim();
+      if (groupName.isEmpty) return;
+
+      final link = _generateFakeShortLink(groupName);
+
+      setState(() {
+        _generatedLink = link;
+        _linkGenerated = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 24),
+        width: MediaQuery.of(context).size.width * 0.75,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Color.fromARGB(109, 252, 251, 249),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: AppColors.brown, width: 1.5),
-
+          color: Colors.white.withOpacity(0.7),
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          border: Border.all(color: AppColors.brown, width: 1),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.75),
+              color: Colors.black.withOpacity(0.35),
               spreadRadius: 1,
               blurRadius: 5,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -60,25 +94,77 @@ class CreateGroupPopup extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              "Create your Squad 👯‍♀️",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              "Create your squad 👯‍♀️",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: AppColors.brown,
+                fontFamily: 'Urbanist',
+              ),
             ),
-            const SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Group Name',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+            const SizedBox(height: 22),
+
+            if (!_linkGenerated)
+              TextField(
+                controller: _groupNameController,
+                style: const TextStyle(
+                  color: AppColors.brown,
+                  fontFamily: 'Inter',
+                  fontSize: 16,
+                ),
+                decoration: InputDecoration(
+                  labelText: "Group Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              )
+            else
+              SelectableText(
+                _generatedLink ?? '',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                  color: AppColors.tealGreen,
+                  fontFamily: 'Inter',
+                ),
+              ),
+
+            const SizedBox(height: 35),
+
+            SizedBox(
+              height: 48,
+              width: 160,
+              child: ElevatedButton(
+                onPressed: _handlePrimaryButton,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.musteredGreen,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
+                  _linkGenerated ? "Copy Link" : "Let's Go!",
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Create Group'),
-            ),
+            const SizedBox(height: 10),
+            /*if (_linkGenerated) ...[
+              const SizedBox(height: 10),
+              TextButton(
+                onPressed: () => context.goNamed('home'),
+                child: const Text(
+                  "Continue to App →",
+                  style: TextStyle(
+                    color: AppColors.tealGreen,
+                    fontSize: 16,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+            ],*/
           ],
         ),
       ),

@@ -100,10 +100,16 @@ class AppTheme {
         filled: true,
         fillColor: Colors.transparent,
         labelStyle: GoogleFonts.inter(
-          fontSize: 14,
+          fontSize: 15,
           fontWeight: FontWeight.normal,
           color: AppColors.brown,
         ),
+        floatingLabelStyle: GoogleFonts.inter(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: AppColors.brown,
+        ),
+
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
           borderSide: BorderSide(color: AppColors.brown),
@@ -125,7 +131,7 @@ class AppTheme {
           borderSide: const BorderSide(color: Colors.red, width: 2),
         ),
         hintStyle: GoogleFonts.inter(
-          fontSize: 14,
+          fontSize: 16,
           color: AppColors.brown.withOpacity(0.6),
           fontWeight: FontWeight.normal,
         ),
@@ -184,6 +190,20 @@ class AppTheme {
         elevation: 6,
         foregroundColor: AppColors.background,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      ),
+
+      //snackbar theme
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: AppColors.tealGreen.withOpacity(0.65),
+        contentTextStyle: GoogleFonts.inter(
+          fontSize: 16,
+          color: AppColors.background,
+          fontWeight: FontWeight.normal,
+        ),
+
+        actionTextColor: AppColors.background,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
