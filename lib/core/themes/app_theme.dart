@@ -174,15 +174,15 @@ class AppTheme {
 
       //app bar
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.musteredGreen,
+        backgroundColor: AppColors.background,
         foregroundColor: AppColors.background,
         elevation: 0,
-        titleTextStyle: GoogleFonts.inter(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-          color: AppColors.background,
+        titleTextStyle: GoogleFonts.urbanist(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          color: AppColors.brown,
         ),
-        iconTheme: IconThemeData(color: AppColors.background),
+        iconTheme: IconThemeData(color: AppColors.brown),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         sizeConstraints: BoxConstraints.tightFor(width: 60, height: 60),
@@ -194,7 +194,7 @@ class AppTheme {
 
       //snackbar theme
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: AppColors.tealGreen.withOpacity(0.65),
+        backgroundColor: AppColors.musteredGreen.withOpacity(0.65),
         contentTextStyle: GoogleFonts.inter(
           fontSize: 16,
           color: AppColors.background,

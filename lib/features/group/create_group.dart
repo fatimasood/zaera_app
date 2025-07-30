@@ -57,9 +57,25 @@ class _CreateGroupDialogState extends State<CreateGroupDialog> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Link copied to clipboard!")),
       );
+
+      Future.delayed(const Duration(seconds: 30), () {
+        Navigator.of(context).pop();
+      });
+
+      Future.delayed(const Duration(milliseconds: 300), () {
+        context.goNamed(
+          'split_bill',
+          queryParameters: {'link': _generatedLink!},
+        );
+      });
     } else {
       final groupName = _groupNameController.text.trim();
-      if (groupName.isEmpty) return;
+      if (groupName.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Please enter a group name.")),
+        );
+        return;
+      }
 
       final link = _generateFakeShortLink(groupName);
 
@@ -106,6 +122,7 @@ class _CreateGroupDialogState extends State<CreateGroupDialog> {
 
             if (!_linkGenerated)
               TextField(
+                cursorColor: AppColors.brown,
                 controller: _groupNameController,
                 style: const TextStyle(
                   color: AppColors.brown,

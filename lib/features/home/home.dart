@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:zaera_app/app/about_us.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/group/all_groups.dart';
-import 'package:zaera_app/features/group/widgets/create_group.dart';
+import 'package:zaera_app/features/group/create_group.dart';
 import 'package:zaera_app/features/home/home_view.dart';
 import 'package:zaera_app/features/profile/user_profile.dart';
 import 'package:zaera_app/features/settings/settings.dart';
-import 'package:zaera_app/utils/bottom_navigationbar.dart';
-import 'package:zaera_app/utils/drawar.dart';
+import 'package:zaera_app/app/bottom_navigationbar.dart';
+import 'package:zaera_app/app/drawar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
