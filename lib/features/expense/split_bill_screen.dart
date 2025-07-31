@@ -18,18 +18,31 @@ class SplitBillScreen extends StatelessWidget {
             Icons.arrow_back_ios_new,
             color: AppColors.brown,
             size: 24,
-            weight: 600,
           ),
         ),
         title: Text(
           "Spain Trip", // Example title, replace with dynamic data
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                // SHOW SAME LINK AGAIN FOR SHARING WITH FRIENDS
+              },
+              icon: Icon(
+                Icons.group_add_outlined,
+                color: AppColors.tealGreen,
+                size: 24,
+              ),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
         child: Column(
           children: [
-            SizedBox(height: 15),
             TopBar(),
             SizedBox(height: 15),
             // Greetings(),
