@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zaera_app/core/themes/colors.dart';
+import 'package:zaera_app/features/expense/widgets/equal_Split.dart';
 
 class SplitOptions extends StatefulWidget {
   const SplitOptions({super.key});
@@ -12,12 +13,12 @@ class SplitOptions extends StatefulWidget {
 class _SplitOptionsState extends State<SplitOptions> {
   int _selectedIndex = 0;
 
-  final List<String> options = ["Percentage", "Custom", "Equally"];
+  final List<String> options = ["Equally", "Percentage", "Custom"];
 
   Widget _buildSelectedWidget() {
     switch (_selectedIndex) {
       case 0:
-        return const Text("Show percentage input or UI here");
+        return const EqualSplitInfo();
       case 1:
         return const Text("Show custom split UI here");
       case 2:
@@ -32,7 +33,7 @@ class _SplitOptionsState extends State<SplitOptions> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        /// Buttons
+        // Buttons
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(options.length, (index) {
@@ -51,10 +52,7 @@ class _SplitOptionsState extends State<SplitOptions> {
                   side:
                       isSelected
                           ? BorderSide.none
-                          : const BorderSide(
-                            color: AppColors.brown,
-                            width: 1.5,
-                          ),
+                          : const BorderSide(color: AppColors.brown, width: 1),
                   foregroundColor:
                       isSelected ? AppColors.background : AppColors.brown,
                 ),

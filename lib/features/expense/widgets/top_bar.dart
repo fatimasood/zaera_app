@@ -53,8 +53,8 @@ class _TopBarState extends State<TopBar> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
 
+              //  crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Marium",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zaera_app/core/themes/colors.dart';
+import 'package:zaera_app/features/expense/widgets/attach_receipt.dart';
 import 'package:zaera_app/features/expense/widgets/split_options.dart';
 import 'package:zaera_app/features/expense/widgets/top_bar.dart';
 
@@ -9,6 +10,9 @@ class SplitBillScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final buttonHeight = screenHeight * 0.06;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -48,13 +52,31 @@ class SplitBillScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
           child: Column(
             children: [
-              TopBar(),
-              SizedBox(height: 15),
-              SplitOptions(),
+              Expanded(
+                child: Column(
+                  children: [
+                    TopBar(),
+                    SizedBox(height: 15),
+                    SplitOptions(),
+                    SizedBox(height: 20),
+                  ],
+                ),
+              ),
+              AttachReceipt(),
               SizedBox(height: 20),
-              // SharedExpenses(),
-              SizedBox(height: 15),
-              // Updates(),
+              SizedBox(
+                width: double.infinity,
+                height: buttonHeight,
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.goNamed('home');
+                  },
+                  child: Text(
+                    "Split yout bill",
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
