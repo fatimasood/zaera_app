@@ -10,6 +10,21 @@ class EqualSplitInfo extends StatefulWidget {
 }
 
 class _EqualSplitInfoState extends State<EqualSplitInfo> {
+  final List<Member> _members = [
+    Member(name: 'Marium', hasPaid: true),
+    Member(name: 'Aliya', hasPaid: false),
+    Member(name: 'Fatima', hasPaid: false),
+    Member(name: 'hafsa', hasPaid: true),
+    Member(name: 'khadija', hasPaid: false),
+    Member(name: 'kalsoom', hasPaid: false),
+  ];
+
+  void _togglePayment(int index) {
+    setState(() {
+      _members[index].hasPaid = !_members[index].hasPaid;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,7 +33,6 @@ class _EqualSplitInfoState extends State<EqualSplitInfo> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Members",
@@ -32,39 +46,73 @@ class _EqualSplitInfoState extends State<EqualSplitInfo> {
                 "Send Reminder",
                 style: GoogleFonts.inter(
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                   color: AppColors.tealGreen,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 10),
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: AppColors.brown, width: 1),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: const Offset(0, 3), // changes position of shadow
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: AppColors.background,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: AppColors.brown, width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: List.generate(_members.length, (index) {
+                    final member = _members[index];
+                    return Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              member.name,
+                              style: GoogleFonts.inter(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.brown,
+                              ),
+                            ),
+                            Checkbox(
+                              value: member.hasPaid,
+                              onChanged: (_) => _togglePayment(index),
+                            ),
+                          ],
+                        ),
+                        if (index != _members.length - 1)
+                          Divider(
+                            color: AppColors.brown.withOpacity(0.3),
+                            thickness: 1,
+                          ),
+                      ],
+                    );
+                  }),
                 ),
-              ],
-            ),
-            child: Column(
-              children: [
-                Text(
-                  "In Equal Split, the total amount is divided equally among all participants.",
-                  style: TextStyle(fontSize: 16, color: Colors.black87),
-                ),
-              ],
+              ),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+class Member {
+  final String name;
+  bool hasPaid;
+
+  Member({required this.name, this.hasPaid = false});
 }

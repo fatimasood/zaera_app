@@ -140,8 +140,9 @@ class AppTheme {
       //cgeckbox
       checkboxTheme: CheckboxThemeData(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        fillColor: WidgetStatePropertyAll(AppColors.tealGreen),
-        checkColor: WidgetStatePropertyAll(AppColors.background),
+        fillColor: WidgetStatePropertyAll(AppColors.background),
+        checkColor: WidgetStatePropertyAll(AppColors.tealGreen),
+        side: BorderSide(color: AppColors.tealGreen, width: 1.75),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
 
