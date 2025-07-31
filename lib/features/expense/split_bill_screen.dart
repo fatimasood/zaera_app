@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zaera_app/core/themes/colors.dart';
+import 'package:zaera_app/features/expense/widgets/split_options.dart';
 import 'package:zaera_app/features/expense/widgets/top_bar.dart';
 
 class SplitBillScreen extends StatelessWidget {
@@ -49,7 +50,7 @@ class SplitBillScreen extends StatelessWidget {
             children: [
               TopBar(),
               SizedBox(height: 15),
-              // Greetings(),
+              SplitOptions(),
               SizedBox(height: 20),
               // SharedExpenses(),
               SizedBox(height: 15),
