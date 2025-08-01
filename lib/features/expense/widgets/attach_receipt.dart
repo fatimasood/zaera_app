@@ -44,7 +44,7 @@ class _AttachReceiptState extends State<AttachReceipt> {
               Text(
                 "Add jpg, png, jpeg files",
                 style: GoogleFonts.inter(
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.normal,
                   color: AppColors.musteredGreen,
                 ),

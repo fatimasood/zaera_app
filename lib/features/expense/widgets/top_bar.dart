@@ -62,7 +62,7 @@ class _TopBarState extends State<TopBar> {
                 ),
                 Text(
                   _createdDate,
-                  style: theme.displaySmall?.copyWith(fontSize: 16),
+                  style: theme.displaySmall?.copyWith(fontSize: 15),
                 ),
               ],
             ),
