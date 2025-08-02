@@ -3,47 +3,31 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/models/group_model.dart';
 
-class EqualSplitInfo extends StatefulWidget {
-  const EqualSplitInfo({super.key});
+class CustomSplitInfo extends StatefulWidget {
+  const CustomSplitInfo({super.key});
 
   @override
-  State<EqualSplitInfo> createState() => _EqualSplitInfoState();
+  State<CustomSplitInfo> createState() => _CustomSplitInfoState();
 }
 
-class _EqualSplitInfoState extends State<EqualSplitInfo> {
-  int leftoveramount = 0;
-
-  final TextEditingController _amountController = TextEditingController();
-
-  final List<Member> _members = [
-    Member(name: 'Marium', hasPaid: true, price: 0),
-    Member(name: 'Aliya', hasPaid: false, price: 0),
-    Member(name: 'Fatima', hasPaid: false, price: 0),
-    Member(name: 'Hafsa', hasPaid: true, price: 0),
-    Member(name: 'Khadija', hasPaid: false, price: 0),
-    Member(name: 'Kalsoom', hasPaid: false, price: 0),
-  ];
-
-  void _togglePayment(int index) {
-    setState(() {
-      _members[index].hasPaid = !_members[index].hasPaid;
-    });
-  }
-
-  void _calculateSplit(int amount) {
-    final perPerson = amount ~/ _members.length;
-    final reminder = amount % _members.length;
-
-    setState(() {
-      for (var m in _members) {
-        m.price = perPerson;
-      }
-      leftoveramount = reminder;
-    });
-  }
-
+class _CustomSplitInfoState extends State<CustomSplitInfo> {
   @override
   Widget build(BuildContext context) {
+    final List<Member> _members = [
+      Member(name: 'Marium', hasPaid: true, price: 0),
+      Member(name: 'Aliya', hasPaid: false, price: 0),
+      Member(name: 'Fatima', hasPaid: false, price: 0),
+      Member(name: 'Hafsa', hasPaid: true, price: 0),
+      Member(name: 'Khadija', hasPaid: false, price: 0),
+      Member(name: 'Kalsoom', hasPaid: false, price: 0),
+    ];
+
+    void _togglePayment(int index) {
+      setState(() {
+        _members[index].hasPaid = !_members[index].hasPaid;
+      });
+    }
+
     return Column(
       children: [
         Row(
@@ -102,14 +86,7 @@ class _EqualSplitInfoState extends State<EqualSplitInfo> {
                             color: AppColors.brown,
                           ),
                         ),
-                        Text(
-                          "${member.price} PKR",
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.brown,
-                          ),
-                        ),
+
                         Checkbox(
                           checkColor: AppColors.background,
                           activeColor: AppColors.musteredGreen,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+//import 'package:provider/provider.dart';
 import 'package:zaera_app/core/themes/colors.dart';
-import 'package:zaera_app/features/expense/widgets/equal_Split.dart';
+import 'package:zaera_app/features/expense/custom_split/custom_split.dart';
+import 'package:zaera_app/features/expense/equal_split/equal_Split.dart';
+import 'package:zaera_app/features/expense/percentage_split/percentage_split.dart';
 
 class SplitOptions extends StatefulWidget {
   const SplitOptions({super.key});
@@ -20,9 +23,9 @@ class _SplitOptionsState extends State<SplitOptions> {
       case 0:
         return const EqualSplitInfo();
       case 1:
-        return const Text("Show custom split UI here");
+        return const PercentageSplitInfo();
       case 2:
-        return const Text("Show equal split info here");
+        return const CustomSplitInfo();
       default:
         return const SizedBox();
     }
@@ -30,6 +33,7 @@ class _SplitOptionsState extends State<SplitOptions> {
 
   @override
   Widget build(BuildContext context) {
+    // final vm = Provider.of<SplitViewModel>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

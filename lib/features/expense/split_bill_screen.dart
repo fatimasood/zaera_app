@@ -16,6 +16,8 @@ class SplitBillScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          shadowColor: AppColors.background,
+          elevation: 0,
           leading: IconButton(
             onPressed: () {
               context.goNamed('home');
@@ -70,6 +72,7 @@ class SplitBillScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     context.goNamed('home');
+                    // split bill show amount and membres whos joined the group shows notification
                   },
                   child: Text(
                     "Split yout bill",
