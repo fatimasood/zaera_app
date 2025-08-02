@@ -19,27 +19,21 @@ class SplitBillScreen extends StatelessWidget {
           shadowColor: AppColors.background,
           elevation: 0,
           leading: IconButton(
-            onPressed: () {
-              context.goNamed('home');
-            },
+            onPressed: () => context.goNamed('home'),
             icon: Icon(
               Icons.arrow_back_ios_new,
               color: AppColors.brown,
               size: 24,
             ),
           ),
-          title: Text(
-            "Spain Trip",
-            textAlign:
-                TextAlign.left, // Example title, replace with dynamic data
-          ),
+          title: const Text("Spain Trip", textAlign: TextAlign.left),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                 onPressed: () {
                   print("Right icon tapped!");
-                  // SHOW SAME LINK AGAIN FOR SHARING WITH FRIENDS
+                  // Share link logic
                 },
                 icon: Icon(
                   Icons.group_add_outlined,
@@ -50,37 +44,36 @@ class SplitBillScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: Padding(
+        body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    TopBar(),
-                    SizedBox(height: 15),
-                    SplitOptions(),
-                    SizedBox(height: 20),
-                  ],
-                ),
-              ),
+              TopBar(),
+              const SizedBox(height: 15),
+              SplitOptions(),
+              const SizedBox(height: 20),
               AttachReceipt(),
-              SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                height: buttonHeight,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.goNamed('home');
-                    // split bill show amount and membres whos joined the group shows notification
-                  },
-                  child: Text(
-                    "Split yout bill",
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                ),
-              ),
+              const SizedBox(height: 20),
             ],
+          ),
+        ),
+
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
+          child: SizedBox(
+            height: buttonHeight,
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                context.goNamed('home');
+                // Logic to trigger the split action
+              },
+              child: Text(
+                "Split your bill",
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
+            ),
           ),
         ),
       ),

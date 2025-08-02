@@ -34,26 +34,40 @@ class _EqualSplitInfoState extends State<EqualSplitInfo> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Members",
-              style: GoogleFonts.urbanist(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: AppColors.brown,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  "Members",
+                  style: GoogleFonts.urbanist(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.brown,
+                  ),
+                ),
               ),
-            ),
-            Text(
-              "Send Reminder",
-              style: GoogleFonts.inter(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: AppColors.tealGreen,
+              Text(
+                "Amount",
+                style: GoogleFonts.urbanist(
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.brown,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(width: 30),
+              Text(
+                "Paied",
+                style: GoogleFonts.urbanist(
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.brown,
+                ),
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: 10),
         // Scrollable List
@@ -77,43 +91,61 @@ class _EqualSplitInfoState extends State<EqualSplitInfo> {
             child: Column(
               children: List.generate(_members.length, (index) {
                 final member = _members[index];
-                return Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          member.name,
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.brown,
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _members.length,
+                  itemBuilder:
+                      (context, index) => Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              member.name,
+                              style: GoogleFonts.inter(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: AppColors.brown,
+                              ),
+                            ),
                           ),
-                        ),
-
-                        Checkbox(
-                          checkColor: AppColors.background,
-                          activeColor: AppColors.musteredGreen,
-                          hoverColor: AppColors.tealGreen,
-                          side: BorderSide(
-                            color: AppColors.musteredGreen,
-                            width: 1.75,
+                          Text(
+                            member.price.toString(),
+                            style: GoogleFonts.inter(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                              color: AppColors.brown,
+                            ),
                           ),
+                          const SizedBox(width: 65),
+                          Checkbox(
+                            checkColor: AppColors.background,
+                            activeColor: AppColors.musteredGreen,
+                            hoverColor: AppColors.tealGreen,
+                            side: BorderSide(
+                              color: AppColors.musteredGreen,
+                              width: 1.75,
+                            ),
 
-                          value: member.hasPaid,
-
-                          onChanged: (_) => _togglePayment(index),
-                        ),
-                      ],
-                    ),
-                    if (index != _members.length - 1)
-                      Divider(
-                        color: AppColors.brown.withOpacity(0.3),
-                        thickness: 1,
+                            value: member.hasPaid,
+                            onChanged: (_) => _togglePayment(index),
+                          ),
+                        ],
                       ),
-                  ],
                 );
               }),
+            ),
+          ),
+        ),
+        //text
+        const SizedBox(height: 15),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Your bill will be split equally among all members. if some rupee leftover, it will be added to the admin's share.",
+            style: GoogleFonts.inter(
+              fontSize: 13,
+              fontWeight: FontWeight.normal,
+              color: AppColors.tealGreen,
             ),
           ),
         ),

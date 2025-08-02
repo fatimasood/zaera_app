@@ -62,9 +62,9 @@ class _SplitOptionsState extends State<SplitOptions> {
                 ),
                 child: Text(
                   options[index],
-                  style: GoogleFonts.urbanist(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 15,
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
                     color: isSelected ? AppColors.background : AppColors.brown,
                   ),
                 ),
