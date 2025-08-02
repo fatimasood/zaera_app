@@ -240,54 +240,80 @@ class _CustomSplitInfoState extends State<CustomSplitInfo> {
                 ),
               ),
             ),
-          ],
-        ),
-        const SizedBox(height: 15),
+            const SizedBox(height: 15),
 
-        //split by
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
-          child: Row(
-            children: [
-              Text(
-                "Split by >",
-                style: GoogleFonts.urbanist(
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.tealGreen,
-                ),
+            //split by
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 0.0,
+                horizontal: 16.0,
               ),
-              const SizedBox(width: 5),
-              SizedBox(
-                height: buttonHeight,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.goNamed('home');
-                    // Logic to trigger the split action
-                  },
-                  child: Text(
-                    "Equally",
-                    style: Theme.of(context).textTheme.labelLarge,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Split by >",
+                    style: GoogleFonts.urbanist(
+                      fontSize: 19,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.tealGreen,
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(
-                height: buttonHeight,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.goNamed('home');
-                    // Logic to trigger the split action
-                  },
-                  child: Text(
-                    "By Percentage",
-                    style: Theme.of(context).textTheme.labelLarge,
+
+                  SizedBox(
+                    //  height: buttonHeight,
+                    width: 120,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: AppColors.tealGreen,
+                        foregroundColor: AppColors.background,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        context.goNamed('home');
+                        // Logic to trigger the split action
+                      },
+                      child: Text(
+                        "Equally",
+                        style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.background,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    //height: buttonHeight,
+                    width: 120,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: AppColors.tealGreen,
+                        foregroundColor: AppColors.background,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        context.goNamed('home');
+                        // Logic to trigger the split action
+                      },
+                      child: Text(
+                        "Percentage",
+                        style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.background,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );
