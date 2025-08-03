@@ -43,8 +43,8 @@ class _CustomSplitInfoState extends State<CustomSplitInfo> {
 
   @override
   Widget build(BuildContext context) {
-    //  final screenHeight = MediaQuery.of(context).size.height;
-    // final buttonHeight = screenHeight * 0.06;
+    final screenW = MediaQuery.of(context).size.width;
+    final screenH = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -246,69 +246,73 @@ class _CustomSplitInfoState extends State<CustomSplitInfo> {
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 0.0,
-                horizontal: 16.0,
+                horizontal: 5.0,
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Split by >",
                     style: GoogleFonts.urbanist(
-                      fontSize: 19,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: AppColors.tealGreen,
                     ),
                   ),
+                  SizedBox(width: screenW * 0.02),
+                  Wrap(
+                    spacing: 12,
+                    runSpacing: 10,
+                    children: [
+                      SizedBox(
+                        width: screenW * 0.29,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: AppColors.tealGreen,
+                            foregroundColor: AppColors.background,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                          onPressed: () {
+                            context.goNamed('home');
+                            // Logic to trigger the split action
+                          },
+                          child: Text(
+                            "Equally",
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.background,
+                            ),
+                          ),
+                        ),
+                      ),
 
-                  SizedBox(
-                    //  height: buttonHeight,
-                    width: 120,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: AppColors.tealGreen,
-                        foregroundColor: AppColors.background,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
+                      SizedBox(
+                        width: screenW * 0.29,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: AppColors.tealGreen,
+                            foregroundColor: AppColors.background,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                          onPressed: () {
+                            context.goNamed('home');
+                            // Logic to trigger the split action
+                          },
+                          child: Text(
+                            "Percentage",
+                            style: GoogleFonts.inter(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.background,
+                            ),
+                          ),
                         ),
                       ),
-                      onPressed: () {
-                        context.goNamed('home');
-                        // Logic to trigger the split action
-                      },
-                      child: Text(
-                        "Equally",
-                        style: GoogleFonts.inter(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.background,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    //height: buttonHeight,
-                    width: 120,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: AppColors.tealGreen,
-                        foregroundColor: AppColors.background,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                      onPressed: () {
-                        context.goNamed('home');
-                        // Logic to trigger the split action
-                      },
-                      child: Text(
-                        "Percentage",
-                        style: GoogleFonts.inter(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.background,
-                        ),
-                      ),
-                    ),
+                    ],
                   ),
                 ],
               ),

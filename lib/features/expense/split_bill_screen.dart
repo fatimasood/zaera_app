@@ -52,7 +52,7 @@ class SplitBillScreen extends StatelessWidget {
               TopBar(),
               const SizedBox(height: 15),
               SplitOptions(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               AttachReceipt(),
               const SizedBox(height: 20),
             ],

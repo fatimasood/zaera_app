@@ -10,7 +10,7 @@ void showCreateGroupDialog(BuildContext context) {
     context: context,
     barrierDismissible: true,
     barrierLabel: "Create Group",
-    barrierColor: Colors.black.withOpacity(0.4),
+    barrierColor: Colors.grey.withOpacity(0.4),
     pageBuilder: (context, animation, secondaryAnimation) {
       return BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
@@ -99,7 +99,7 @@ class _CreateGroupDialogState extends State<CreateGroupDialog> {
           border: Border.all(color: AppColors.brown, width: 1),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.35),
+              color: Colors.grey.withOpacity(0.35),
               spreadRadius: 1,
               blurRadius: 5,
               offset: const Offset(0, 3),
