@@ -7,6 +7,13 @@ class TopBarHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    //final screenHeight = MediaQuery.of(context).size.height;
+
+    // Scale avatar and icon sizes
+    final avatarRadius = screenWidth * 0.075;
+    final iconSize = screenWidth * 0.075;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -17,14 +24,14 @@ class TopBarHeader extends StatelessWidget {
             GoRouter.of(context).go('/profile');
           },
           child: CircleAvatar(
-            radius: 28,
+            radius: avatarRadius,
             backgroundColor: AppColors.tealGreen,
             backgroundImage: AssetImage(
               'lib/assets/images/avatar.png',
             ), // Replace with your image
           ),
         ),
-        // right side widget icon notification click to open notifications screen
+        //Notification icon
         GestureDetector(
           onTap: () {
             // Handle notification icon tap
@@ -32,7 +39,7 @@ class TopBarHeader extends StatelessWidget {
           },
           child: Icon(
             Icons.notifications_outlined,
-            size: 28,
+            size: iconSize,
             color: AppColors.tealGreen,
           ),
         ),

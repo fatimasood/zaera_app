@@ -47,6 +47,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+
     final logoSize = screenHeight * 0.2;
     final buttonHeight = screenHeight * 0.06;
 

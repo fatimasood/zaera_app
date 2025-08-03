@@ -9,21 +9,31 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
-          child: Column(
-            children: [
-              SizedBox(height: 15),
-              TopBarHeader(),
-              SizedBox(height: 15),
-              Greetings(),
-              SizedBox(height: 20),
-              SharedExpenses(),
-              SizedBox(height: 15),
-              Updates(),
-            ],
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    double spacing(double factor) => screenHeight * factor;
+
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: screenWidth * 0.03,
+              vertical: screenHeight * 0.02,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TopBarHeader(),
+                SizedBox(height: spacing(0.015)),
+                Greetings(),
+                SizedBox(height: spacing(0.01)),
+                SharedExpenses(),
+                SizedBox(height: spacing(0.015)),
+                Updates(),
+              ],
+            ),
           ),
         ),
       ),

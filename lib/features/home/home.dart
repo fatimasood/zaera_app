@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: PageView(
           controller: _pageController,
-          physics: NeverScrollableScrollPhysics(), // Disable swipe navigation
+          //  physics: NeverScrollableScrollPhysics(),
           children: _pages,
           onPageChanged: (index) {
             setState(() {

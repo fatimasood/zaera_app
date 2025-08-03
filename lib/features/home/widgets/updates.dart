@@ -7,6 +7,11 @@ class Updates extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    double spacing(double factor) => screenHeight * factor;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,11 +23,12 @@ class Updates extends StatelessWidget {
             color: AppColors.brown,
           ),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: spacing(0.012)),
         Container(
-          height: 237,
+          height: screenHeight * 0.3,
           width: double.infinity,
-          margin: const EdgeInsets.symmetric(horizontal: 10),
+          margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.025),
+
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             border: Border.all(color: AppColors.brown, width: 1),
@@ -36,8 +42,8 @@ class Updates extends StatelessWidget {
               ),
             ],
           ),
-          child: ListView.separated(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: spacing(0.01)),
             itemCount: 5,
             itemBuilder: (context, index) {
               return ListTile(
@@ -69,14 +75,6 @@ class Updates extends StatelessWidget {
                 ),
               );
             },
-            separatorBuilder:
-                (context, index) => Divider(
-                  color: AppColors.brown.withOpacity(0.3),
-                  thickness: 1,
-                  indent: 20,
-                  endIndent: 20,
-                  height: 4,
-                ),
           ),
         ),
       ],

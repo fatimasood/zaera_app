@@ -28,7 +28,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (kDebugMode) {
       print("Splash started...");
     }
-    await Future.delayed(const Duration(seconds: 6));
+    await Future.delayed(const Duration(seconds: 5));
 
     final isFirstTime = ref.read(isFirstTimeUserProvider);
     final isLoggedIn = ref.read(isLoggedInProvider);
@@ -47,7 +47,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    //final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -59,7 +58,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 'lib/assets/animations/zaera_splash.json',
                 repeat: false,
                 width: width * 0.5,
-                //height: 200,
+
                 fit: BoxFit.contain,
               ),
             ),

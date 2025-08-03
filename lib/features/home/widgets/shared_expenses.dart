@@ -14,7 +14,15 @@ class _SharedExpensesState extends State<SharedExpenses> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    double boxWidth = screenWidth * 0.55;
+    double boxHeight = screenHeight * 0.16;
+    double spacing(double factor) => screenHeight * factor;
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Header
         Row(
@@ -46,8 +54,7 @@ class _SharedExpensesState extends State<SharedExpenses> {
 
         // Scrollable List
         SizedBox(
-          height: 180,
-          width: double.infinity,
+          height: boxHeight + spacing(0.02),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 10,
@@ -62,8 +69,13 @@ class _SharedExpensesState extends State<SharedExpenses> {
                 },
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  margin: const EdgeInsets.all(10.0),
-                  width: 220,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.02,
+                    vertical: screenHeight * 0.001,
+                  ),
+                  width: boxWidth,
+                  height: boxHeight,
+                  padding: EdgeInsets.all(screenWidth * 0.04),
                   decoration: BoxDecoration(
                     color:
                         isSelected
@@ -87,61 +99,55 @@ class _SharedExpensesState extends State<SharedExpenses> {
                       ),
                     ],
                   ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 20, bottom: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Spain Trip',
-                            style: GoogleFonts.urbanist(
-                              color:
-                                  isSelected
-                                      ? AppColors.background
-                                      : AppColors.brown,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Total Expense: 300 pkr',
-                            style: GoogleFonts.inter(
-                              color:
-                                  isSelected
-                                      ? AppColors.background
-                                      : AppColors.brown.withOpacity(0.8),
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                          Text(
-                            'Your share: 100 pkr',
-                            style: GoogleFonts.inter(
-                              color:
-                                  isSelected
-                                      ? AppColors.background
-                                      : AppColors.brown.withOpacity(0.8),
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                          Text(
-                            'Your Status: Pending',
-                            style: GoogleFonts.inter(
-                              color:
-                                  isSelected
-                                      ? AppColors.background
-                                      : AppColors.brown.withOpacity(0.8),
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Spain Trip',
+                        style: GoogleFonts.urbanist(
+                          color:
+                              isSelected
+                                  ? AppColors.background
+                                  : AppColors.brown,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Total Expense: 300 pkr',
+                        style: GoogleFonts.inter(
+                          color:
+                              isSelected
+                                  ? AppColors.background
+                                  : AppColors.brown.withOpacity(0.8),
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      Text(
+                        'Your share: 100 pkr',
+                        style: GoogleFonts.inter(
+                          color:
+                              isSelected
+                                  ? AppColors.background
+                                  : AppColors.brown.withOpacity(0.8),
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      Text(
+                        'Your Status: Pending',
+                        style: GoogleFonts.inter(
+                          color:
+                              isSelected
+                                  ? AppColors.background
+                                  : AppColors.brown.withOpacity(0.8),
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );
