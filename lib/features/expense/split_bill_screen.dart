@@ -16,8 +16,8 @@ class SplitBillScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          shadowColor: AppColors.background,
           elevation: 0,
+          scrolledUnderElevation: 0,
           leading: IconButton(
             onPressed: () => context.goNamed('home'),
             icon: Icon(

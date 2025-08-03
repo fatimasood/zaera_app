@@ -59,7 +59,7 @@ class Updates extends StatelessWidget {
                   ),
                 ),
                 title: Text(
-                  'Update ${index + 1}',
+                  'Group ${index + 1}',
                   style: GoogleFonts.urbanist(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -67,7 +67,7 @@ class Updates extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  'Details about update ${index + 1}',
+                  'You need to pay 100 Rs for group ${index + 1}',
                   style: GoogleFonts.urbanist(
                     fontSize: 14,
                     color: AppColors.brown.withOpacity(0.7),
