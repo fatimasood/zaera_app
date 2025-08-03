@@ -58,7 +58,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
               child: Lottie.asset(
                 'lib/assets/animations/zaera_splash.json',
                 repeat: false,
-                width: width * 0.4,
+                width: width * 0.5,
                 //height: 200,
                 fit: BoxFit.contain,
               ),

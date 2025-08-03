@@ -43,8 +43,8 @@ class _CustomSplitInfoState extends State<CustomSplitInfo> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final buttonHeight = screenHeight * 0.06;
+    //  final screenHeight = MediaQuery.of(context).size.height;
+    // final buttonHeight = screenHeight * 0.06;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

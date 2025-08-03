@@ -85,13 +85,13 @@ class _SignupScreenState extends State<SignupScreen> {
                       hint: 'User',
                       onChanged: (val) {},
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: screenHeight * 0.02),
                     CustomInput(
                       label: 'Email',
                       hint: 'you@example.com',
                       onChanged: (val) {},
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: screenHeight * 0.02),
                     CustomInput(
                       label: 'Password',
                       hint: 'Enter strong password...',

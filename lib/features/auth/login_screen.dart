@@ -46,11 +46,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Hey Fatema',
                       style: GoogleFonts.urbanist(
                         fontSize: 24,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w600,
                         color: AppColors.brown,
                       ),
                     ),
-                    const SizedBox(height: 6.0),
+                    SizedBox(height: 0.5),
                     Text(
                       'Welcome Back',
                       style: Theme.of(context).textTheme.displayLarge,
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hint: 'Your registered mail...',
                       onChanged: (val) {},
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: screenHeight * 0.02),
                     CustomInput(
                       label: 'Password',
                       hint: 'Enter your password...',
