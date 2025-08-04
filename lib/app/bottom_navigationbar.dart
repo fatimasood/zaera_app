@@ -38,7 +38,7 @@ class BottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               buildNavItem(Icons.home_outlined, "Home", 0),
-              buildNavItem(Icons.favorite_border, "Roomies", 1),
+              buildNavItem(Icons.person_4_outlined, "Profile", 1),
               SizedBox(width: navItemWidth * 0.8),
               buildNavItem(Icons.group_add_outlined, "Groups", 2),
               buildNavItem(Icons.settings_outlined, "Settings", 3),

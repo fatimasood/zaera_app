@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zaera_app/features/settings/widgets/user_profile_image.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -18,7 +17,7 @@ class Settings extends StatelessWidget {
                 horizontal: screenWidth * 0.03,
                 vertical: screenHeight * 0.02,
               ),
-              child: Column(children: [UserProfileImage()]),
+              child: Column(children: []),
             ),
           ),
         ),
