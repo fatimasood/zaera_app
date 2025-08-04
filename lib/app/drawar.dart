@@ -37,8 +37,8 @@ class Drawar extends StatelessWidget {
                 index: 0,
               ),
               _buildDrawerItem(
-                icon: Icons.person_4_outlined,
-                title: 'Profile',
+                icon: Icons.favorite_border,
+                title: 'Roomies',
                 index: 1,
               ),
               _buildDrawerItem(

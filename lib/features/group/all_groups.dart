@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zaera_app/features/group/widgets/all_groups_card.dart';
-import 'package:zaera_app/features/group/widgets/top_bar.dart';
 import 'package:zaera_app/features/home/widgets/header.dart';
 
 class AllGroups extends StatelessWidget {
