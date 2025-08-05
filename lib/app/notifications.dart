@@ -10,7 +10,6 @@ class Notifications extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final double horizontalPadding = screenWidth * 0.05;
 
     final List<Map<String, dynamic>> notifications = [
       {
@@ -36,26 +35,16 @@ class Notifications extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0,
-          scrolledUnderElevation: 0,
           leading: IconButton(
             onPressed: () => context.goNamed('home'),
-            icon: Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.brown,
-              size: 20,
-            ),
+            icon: Icon(Icons.arrow_back_ios_new, size: 20),
           ),
-          title: const Text(
-            "Notifications",
-            textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 24.0),
-          ),
+          title: const Text("Notifications"),
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: horizontalPadding,
-            vertical: screenHeight * 0.01,
+            horizontal: screenWidth * 0.03,
+            vertical: screenHeight * 0.02,
           ),
           child:
               notifications.isEmpty

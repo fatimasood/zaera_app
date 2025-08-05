@@ -12,7 +12,7 @@ class AppTheme {
       hintColor: AppColors.musteredGreen,
       brightness: Brightness.light,
 
-      iconTheme: IconThemeData(color: AppColors.musteredGreen, size: 13),
+      iconTheme: IconThemeData(color: AppColors.brown, size: 21),
 
       textTheme: TextTheme(
         displayLarge: GoogleFonts.urbanist(
@@ -178,9 +178,11 @@ class AppTheme {
         backgroundColor: AppColors.background,
         foregroundColor: AppColors.background,
         elevation: 0,
+        scrolledUnderElevation: 0,
+        centerTitle: true,
         titleTextStyle: GoogleFonts.urbanist(
           fontSize: 30,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w700,
           color: AppColors.brown,
         ),
         iconTheme: IconThemeData(color: AppColors.brown),
@@ -205,6 +207,11 @@ class AppTheme {
         actionTextColor: AppColors.background,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+
+      dividerTheme: DividerThemeData(
+        color: AppColors.brown.withOpacity(0.5),
+        thickness: 1.2,
       ),
     );
   }

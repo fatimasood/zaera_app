@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.background,
+
         bottomNavigationBar: BottomNavBar(
           selectedIndex: _selectedIndex,
           onItemTapped: _onBottomNavItemTapped,

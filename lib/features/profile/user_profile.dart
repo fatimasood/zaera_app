@@ -16,8 +16,8 @@ class UserProfile extends StatelessWidget {
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: screenWidth * 0.05,
-              vertical: screenHeight * 0.03,
+              horizontal: screenWidth * 0.03,
+              vertical: screenHeight * 0.02,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,11 +33,7 @@ class UserProfile extends StatelessWidget {
 
                 // Reminder Message Setup
                 ListTile(
-                  leading: const Icon(
-                    Icons.message,
-                    size: 20,
-                    color: AppColors.brown,
-                  ),
+                  leading: const Icon(Icons.message),
                   title: Text(
                     'Set Reminder Message',
                     style: GoogleFonts.inter(
@@ -61,11 +57,7 @@ class UserProfile extends StatelessWidget {
 
                 // Send Reminder to All
                 ListTile(
-                  leading: const Icon(
-                    Icons.notifications_active_outlined,
-                    size: 20,
-                    color: AppColors.brown,
-                  ),
+                  leading: const Icon(Icons.notifications_active),
                   title: Text(
                     'Send Reminder to All',
                     style: GoogleFonts.inter(
@@ -88,11 +80,7 @@ class UserProfile extends StatelessWidget {
                 ),
                 // Edit Profile
                 ListTile(
-                  leading: const Icon(
-                    Icons.password,
-                    size: 20,
-                    color: AppColors.brown,
-                  ),
+                  leading: const Icon(Icons.password),
                   title: Text(
                     'Change Password',
                     style: GoogleFonts.inter(
@@ -108,11 +96,7 @@ class UserProfile extends StatelessWidget {
                 ),
                 // Logout
                 ListTile(
-                  leading: const Icon(
-                    Icons.logout,
-                    size: 20,
-                    color: AppColors.brown,
-                  ),
+                  leading: const Icon(Icons.logout),
                   title: Text(
                     'Logout',
                     style: GoogleFonts.inter(
@@ -127,11 +111,7 @@ class UserProfile extends StatelessWidget {
                 ),
                 // Delete Account
                 ListTile(
-                  leading: const Icon(
-                    Icons.delete_forever,
-                    color: Colors.red,
-                    size: 20,
-                  ),
+                  leading: const Icon(Icons.delete_forever, color: Colors.red),
                   title: Text(
                     'Delete Account',
                     style: GoogleFonts.inter(

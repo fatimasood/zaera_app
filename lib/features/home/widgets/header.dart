@@ -18,18 +18,12 @@ class TopBarHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         //click able avatar
-        GestureDetector(
-          onTap: () {
-            // Handle avatar tap, e.g., navigate to profile
-            GoRouter.of(context).go('/profile');
-          },
-          child: CircleAvatar(
-            radius: avatarRadius,
-            backgroundColor: AppColors.tealGreen,
-            backgroundImage: AssetImage(
-              'lib/assets/images/avatar.png',
-            ), // Replace with your image
-          ),
+        CircleAvatar(
+          radius: avatarRadius,
+          backgroundColor: AppColors.tealGreen,
+          backgroundImage: AssetImage(
+            'lib/assets/images/avatar.png',
+          ), // Replace with your image
         ),
         //Notification icon
         GestureDetector(

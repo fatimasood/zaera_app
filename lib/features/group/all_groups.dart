@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zaera_app/features/group/widgets/all_groups_card.dart';
-import 'package:zaera_app/features/home/widgets/header.dart';
 
 class AllGroups extends StatelessWidget {
   const AllGroups({super.key});
@@ -13,6 +12,7 @@ class AllGroups extends StatelessWidget {
     double spacing(double factor) => screenHeight * factor;
 
     return Scaffold(
+      appBar: AppBar(title: Text("Zaera Circles")),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -22,12 +22,7 @@ class AllGroups extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TopBarHeader(),
-                SizedBox(height: spacing(0.015)),
-                AllGroupsCard(),
-                SizedBox(height: spacing(0.01)),
-              ],
+              children: [AllGroupsCard(), SizedBox(height: spacing(0.01))],
             ),
           ),
         ),
