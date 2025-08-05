@@ -57,15 +57,11 @@ class Settings extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Settings"),
-
-          iconTheme: IconThemeData(color: AppColors.brown),
-        ),
+        appBar: AppBar(title: Text("Settings")),
 
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.04,
+            horizontal: screenWidth * 0.03,
             vertical: screenHeight * 0.02,
           ),
           child: Column(
