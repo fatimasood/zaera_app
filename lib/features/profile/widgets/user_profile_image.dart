@@ -33,12 +33,15 @@ class UserProfileImage extends StatelessWidget {
           Text(
             "Fatema",
             style: GoogleFonts.inter(
-              fontSize: 22,
+              fontSize: screenWidth * 0.06,
               fontWeight: FontWeight.w600,
               color: AppColors.brown,
             ),
           ),
-          Text("@fatimamughal103"),
+          Text(
+            "@fatimamughal103",
+            style: GoogleFonts.inter(color: AppColors.brown.withOpacity(0.65)),
+          ),
         ],
       ),
     );

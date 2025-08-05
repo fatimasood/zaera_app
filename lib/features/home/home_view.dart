@@ -26,9 +26,9 @@ class HomeView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TopBarHeader(),
-                SizedBox(height: spacing(0.015)),
+                SizedBox(height: spacing(0.02)),
                 Greetings(),
-                SizedBox(height: spacing(0.01)),
+                SizedBox(height: spacing(0.02)),
                 SharedExpenses(),
                 SizedBox(height: spacing(0.015)),
                 Updates(),

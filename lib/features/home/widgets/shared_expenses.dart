@@ -25,32 +25,15 @@ class _SharedExpensesState extends State<SharedExpenses> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Header
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Shared Expenses',
-              style: GoogleFonts.urbanist(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: AppColors.brown,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                // Navigate to all shared expenses
-              },
-              child: Text(
-                'See All',
-                style: GoogleFonts.urbanist(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.tealGreen,
-                ),
-              ),
-            ),
-          ],
+        Text(
+          'Shared Expenses',
+          style: GoogleFonts.urbanist(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: AppColors.brown,
+          ),
         ),
+        SizedBox(height: 7.0),
 
         // Scrollable List
         SizedBox(
