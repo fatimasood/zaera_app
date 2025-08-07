@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zaera_app/core/constant.dart';
+import 'package:zaera_app/features/auth/auth_controller.dart';
 import 'package:zaera_app/widgets/custom_input.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -12,7 +13,10 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  String password = '';
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   String passwordStrength = 'Set Strong Password..!!';
 
   Color getStrengthColor(String strength) {
@@ -42,6 +46,14 @@ class _SignupScreenState extends State<SignupScreen> {
     if (password.length >= 6 && strength >= 2) return 'Kinda Safe :|';
     if (password.isNotEmpty && strength >= 1) return 'Too Soft :(';
     return 'Set Strong Password..!!';
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -83,23 +95,23 @@ class _SignupScreenState extends State<SignupScreen> {
                     // INPUT FIELDS
                     CustomInput(
                       label: 'Name',
-                      hint: 'User',
-                      onChanged: (val) {},
+                      hint: 'User Name',
+                      controller: nameController,
                     ),
                     SizedBox(height: screenHeight * 0.02),
                     CustomInput(
                       label: 'Email',
                       hint: 'you@example.com',
-                      onChanged: (val) {},
+                      controller: emailController,
                     ),
                     SizedBox(height: screenHeight * 0.02),
                     CustomInput(
                       label: 'Password',
                       hint: 'Enter strong password...',
                       obscureText: true,
+                      controller: passwordController,
                       onChanged: (val) {
                         setState(() {
-                          password = val;
                           passwordStrength = checkPasswordStrength(val);
                         });
                       },
@@ -128,8 +140,43 @@ class _SignupScreenState extends State<SignupScreen> {
                       width: double.infinity,
                       height: buttonHeight,
                       child: ElevatedButton(
-                        onPressed: () {
-                          context.goNamed('home');
+                        onPressed: () async {
+                          final authServices = AuthController();
+                          print(
+                            "Email: ${emailController.text}, Password: ${passwordController.text}",
+                          );
+
+                          try {
+                            final response = await authServices.signUp(
+                              emailController.text,
+                              passwordController.text,
+                            );
+                            print(
+                              "Email: ${emailController.text}, Password: ${passwordController.text}",
+                            );
+
+                            if (response.user != null) {
+                              context.goNamed('home');
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    "Your Account is not created due to any issue. Try again..!!",
+                                  ),
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "Error: ${e.toString()}",
+                                  // "Error in creating your Account. Try again later..!!",
+                                ),
+                              ),
+                            );
+                            print("Error: ${e.toString()}");
+                          }
                         },
                         child: Text(
                           "Sign Up",

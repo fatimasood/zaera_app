@@ -6,14 +6,16 @@ class CustomInput extends StatefulWidget {
   final String label;
   final String hint;
   final bool obscureText;
-  final Function(String) onChanged;
+  final Function(String)? onChanged;
+  final TextEditingController controller;
 
   const CustomInput({
     super.key,
     required this.label,
     required this.hint,
     this.obscureText = false,
-    required this.onChanged,
+    required this.controller,
+    this.onChanged,
   });
 
   @override
@@ -55,6 +57,8 @@ class _CustomInputState extends State<CustomInput> {
         cursorColor: AppColors.brown,
         obscureText: _obscure,
         onChanged: widget.onChanged,
+        controller: widget.controller,
+
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,

@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zaera_app/core/themes/colors.dart';
+import 'package:zaera_app/features/auth/auth_controller.dart';
 import 'package:zaera_app/features/profile/widgets/user_profile_image.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
 
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+
+    //get auth service
+    final authService = AuthController();
 
     return SafeArea(
       child: Scaffold(
@@ -121,8 +130,9 @@ class UserProfile extends StatelessWidget {
                       color: AppColors.brown,
                     ),
                   ),
-                  onTap: () {
-                    // Handle logout
+                  //logout the user
+                  onTap: () async {
+                    await authService.signOut();
                   },
                 ),
                 // Delete Account

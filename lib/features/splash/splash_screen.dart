@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:zaera_app/core/constant.dart';
 import 'package:zaera_app/core/themes/colors.dart';
-
-// Fake providers for now
-final isFirstTimeUserProvider = Provider<bool>((ref) => true);
-final isLoggedInProvider = Provider<bool>((ref) => false);
+import 'package:zaera_app/features/auth/auth_controller.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -18,26 +16,25 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
+  final _auth = AuthController();
+
   @override
   void initState() {
     super.initState();
-    _navigateNext();
+    _navigateBasedOnSession();
   }
 
-  Future<void> _navigateNext() async {
+  Future<void> _navigateBasedOnSession() async {
     if (kDebugMode) {
       print("Splash started...");
     }
     await Future.delayed(const Duration(seconds: 5));
 
-    final isFirstTime = ref.read(isFirstTimeUserProvider);
-    final isLoggedIn = ref.read(isLoggedInProvider);
+    final session = Supabase.instance.client.auth.currentSession;
 
-    print("isFirstTime: $isFirstTime | isLoggedIn: $isLoggedIn");
+    if (kDebugMode) print("Recovered session: $session");
 
-    if (isFirstTime) {
-      context.goNamed('signup');
-    } else if (isLoggedIn) {
+    if (session != null) {
       context.goNamed('home');
     } else {
       context.goNamed('login');

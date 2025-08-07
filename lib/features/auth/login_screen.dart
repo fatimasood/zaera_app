@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zaera_app/core/constant.dart';
 import 'package:zaera_app/core/themes/colors.dart';
+import 'package:zaera_app/features/auth/auth_controller.dart';
 import 'package:zaera_app/widgets/custom_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,6 +19,44 @@ class _LoginScreenState extends State<LoginScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     final logoSize = screenHeight * 0.2;
     final buttonHeight = screenHeight * 0.06;
+
+    //Auth Servicds
+    final authServices = AuthController();
+
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
+    void login() async {
+      final email = emailController.text.trim();
+      final password = passwordController.text;
+
+      if (email.isEmpty || password.isEmpty || email.contains("@gmail.com")) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Please enter proper email and password")),
+        );
+        return;
+      }
+
+      try {
+        final response = await authServices.signInWithEmailPassword(
+          email,
+          password,
+        );
+        if (response.user != null) {
+          context.goNamed('home');
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Try Again... !! Login Failed ")),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Try Again... !! Login Failed ")),
+        );
+      }
+    }
+
+    bool rememberMe = false;
 
     return SafeArea(
       child: Scaffold(
@@ -58,16 +97,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 30),
 
                     CustomInput(
+                      controller: emailController,
                       label: 'Email',
                       hint: 'Your registered mail...',
-                      onChanged: (val) {},
                     ),
                     SizedBox(height: screenHeight * 0.02),
                     CustomInput(
                       label: 'Password',
                       hint: 'Enter your password...',
                       obscureText: true,
-                      onChanged: (val) {},
+                      controller: passwordController,
                     ),
 
                     const SizedBox(height: 3.0),
@@ -77,9 +116,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           children: [
                             Checkbox(
-                              value: true,
+                              value: rememberMe,
                               onChanged: (val) {
-                                //logic here
+                                setState(() {
+                                  rememberMe = val ?? false;
+                                });
                               },
                             ),
 
@@ -121,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: buttonHeight,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.goNamed('home');
+                          login();
                         },
                         child: Text(
                           "Log In",

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:zaera_app/app/notifications.dart';
 import 'package:zaera_app/features/auth/login_screen.dart';
 import 'package:zaera_app/features/auth/signup_screen.dart';
@@ -28,6 +29,11 @@ final GoRouter appRoutes = GoRouter(
       path: '/home',
       name: 'home',
       builder: (context, state) => const HomeScreen(),
+      redirect: (context, state) {
+        final session = Supabase.instance.client.auth.currentSession;
+        if (session == null) return '/login';
+        return null;
+      },
     ),
     GoRoute(
       path: '/profile',
