@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zaera_app/core/constant.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/auth/auth_controller.dart';
+import 'package:zaera_app/services/profile_service.dart';
 import 'package:zaera_app/widgets/custom_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,49 +15,58 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  //Auth Servicds
+  final authServices = AuthController();
+
+  void login() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text;
+
+    if (email.isEmpty || password.isEmpty || !email.contains("@gmail.com")) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please enter proper email and password")),
+      );
+      return;
+    }
+
+    try {
+      final response = await authServices.signInWithEmailPassword(
+        email,
+        password,
+      );
+      if (response.user != null) {
+        context.goNamed('home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Try Again... !! Login Failed ")),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Try Again... !! Login Failed ")));
+    }
+  }
+
+  bool rememberMe = false;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final logoSize = screenHeight * 0.2;
     final buttonHeight = screenHeight * 0.06;
 
-    //Auth Servicds
-    final authServices = AuthController();
-
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
-    void login() async {
-      final email = emailController.text.trim();
-      final password = passwordController.text;
-
-      if (email.isEmpty || password.isEmpty || email.contains("@gmail.com")) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Please enter proper email and password")),
-        );
-        return;
-      }
-
-      try {
-        final response = await authServices.signInWithEmailPassword(
-          email,
-          password,
-        );
-        if (response.user != null) {
-          context.goNamed('home');
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Try Again... !! Login Failed ")),
-          );
-        }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Try Again... !! Login Failed ")),
-        );
-      }
-    }
-
-    bool rememberMe = false;
+    final name = ProfileService().getUserName();
 
     return SafeArea(
       child: Scaffold(
@@ -82,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // HEADING
                     Text(
-                      'Hey Fatema',
+                      'Hey $name',
                       style: GoogleFonts.urbanist(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,

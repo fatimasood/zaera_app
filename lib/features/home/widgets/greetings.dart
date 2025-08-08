@@ -13,7 +13,7 @@ class Greetings extends StatelessWidget {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Hey! Fatima 👋',
+            'Hey! userName 👋',
             style: Theme.of(context).textTheme.displayLarge,
           ),
         ),

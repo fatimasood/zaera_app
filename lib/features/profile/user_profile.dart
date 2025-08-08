@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/auth/auth_controller.dart';
@@ -45,12 +46,12 @@ class _UserProfileState extends State<UserProfile> {
                   leading: const Icon(
                     Icons.message,
                     color: AppColors.brown,
-                    size: 24,
+                    size: 20,
                   ),
                   title: Text(
                     'Set Reminder Message',
                     style: GoogleFonts.inter(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: AppColors.brown,
                     ),
@@ -73,12 +74,12 @@ class _UserProfileState extends State<UserProfile> {
                   leading: const Icon(
                     Icons.notifications_active,
                     color: AppColors.brown,
-                    size: 24,
+                    size: 20,
                   ),
                   title: Text(
                     'Send Reminder to All',
                     style: GoogleFonts.inter(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: AppColors.brown,
                     ),
@@ -100,12 +101,12 @@ class _UserProfileState extends State<UserProfile> {
                   leading: const Icon(
                     Icons.password,
                     color: AppColors.brown,
-                    size: 24,
+                    size: 20,
                   ),
                   title: Text(
                     'Change Password',
                     style: GoogleFonts.inter(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: AppColors.brown,
                     ),
@@ -120,12 +121,12 @@ class _UserProfileState extends State<UserProfile> {
                   leading: const Icon(
                     Icons.logout,
                     color: AppColors.brown,
-                    size: 24,
+                    size: 20,
                   ),
                   title: Text(
                     'Logout',
                     style: GoogleFonts.inter(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: AppColors.brown,
                     ),
@@ -133,6 +134,8 @@ class _UserProfileState extends State<UserProfile> {
                   //logout the user
                   onTap: () async {
                     await authService.signOut();
+                    if (!mounted) return;
+                    context.goNamed('login');
                   },
                 ),
                 // Delete Account
@@ -140,12 +143,12 @@ class _UserProfileState extends State<UserProfile> {
                   leading: const Icon(
                     Icons.delete_forever,
                     color: Colors.red,
-                    size: 24,
+                    size: 20,
                   ),
                   title: Text(
                     'Delete Account',
                     style: GoogleFonts.inter(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

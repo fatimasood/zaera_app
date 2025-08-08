@@ -6,7 +6,6 @@ import 'package:lottie/lottie.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:zaera_app/core/constant.dart';
 import 'package:zaera_app/core/themes/colors.dart';
-import 'package:zaera_app/features/auth/auth_controller.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -16,8 +15,6 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
-  final _auth = AuthController();
-
   @override
   void initState() {
     super.initState();

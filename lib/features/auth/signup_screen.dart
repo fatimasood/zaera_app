@@ -152,10 +152,16 @@ class _SignupScreenState extends State<SignupScreen> {
                               passwordController.text,
                             );
                             print(
-                              "Email: ${emailController.text}, Password: ${passwordController.text}",
+                              "Sign up with: ${emailController.text}, Password: ${passwordController.text}",
                             );
 
                             if (response.user != null) {
+                              // Save the profile data to Supabase
+                              await authServices.createProfile(
+                                userId: response.user!.id,
+                                name: nameController.text.trim(),
+                                email: emailController.text.trim(),
+                              );
                               context.goNamed('home');
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(

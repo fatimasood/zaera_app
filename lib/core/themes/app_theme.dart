@@ -12,7 +12,7 @@ class AppTheme {
       hintColor: AppColors.musteredGreen,
       brightness: Brightness.light,
 
-      iconTheme: IconThemeData(color: AppColors.brown, size: 21),
+      iconTheme: IconThemeData(color: AppColors.brown),
 
       textTheme: TextTheme(
         displayLarge: GoogleFonts.urbanist(
@@ -197,11 +197,11 @@ class AppTheme {
 
       //snackbar theme
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: AppColors.musteredGreen.withOpacity(0.65),
+        backgroundColor: Colors.white.withOpacity(0.75),
         contentTextStyle: GoogleFonts.inter(
           fontSize: 16,
-          color: AppColors.background,
-          fontWeight: FontWeight.normal,
+          color: AppColors.tealGreen,
+          fontWeight: FontWeight.w500,
         ),
 
         actionTextColor: AppColors.background,

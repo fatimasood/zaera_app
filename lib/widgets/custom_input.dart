@@ -66,12 +66,13 @@ class _CustomInputState extends State<CustomInput> {
           ),
           labelText: widget.label,
           hintText: widget.hint,
-          prefixIcon: Icon(_getPrefixIcon()),
+          prefixIcon: Icon(_getPrefixIcon(), size: 20),
           suffixIcon:
               widget.obscureText
                   ? IconButton(
                     icon: Icon(
                       _obscure ? Icons.visibility_off : Icons.visibility,
+                      size: 20,
                     ),
                     onPressed: () {
                       setState(() => _obscure = !_obscure);
