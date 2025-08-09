@@ -6,7 +6,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:zaera_app/core/constant.dart';
 import 'package:zaera_app/database/user_database.dart';
 import 'package:zaera_app/features/auth/auth_controller.dart';
-import 'package:zaera_app/models/user/user_model.dart';
 import 'package:zaera_app/widgets/custom_input.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -174,7 +173,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   Supabase.instance.client.auth.currentUser;
                               await Supabase.instance.client
                                   .from('zaera_users')
-                                  .insert({
+                                  .upsert({
                                     'id': user!.id,
                                     'name': nameController.text,
                                     'email': emailController.text,

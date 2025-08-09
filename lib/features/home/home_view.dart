@@ -5,7 +5,8 @@ import 'package:zaera_app/features/home/widgets/shared_expenses.dart';
 import 'package:zaera_app/features/home/widgets/updates.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final String userName;
+  const HomeView({super.key, required this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class HomeView extends StatelessWidget {
               children: [
                 TopBarHeader(),
                 SizedBox(height: spacing(0.02)),
-                Greetings(),
+                Greetings(userName: userName),
                 SizedBox(height: spacing(0.02)),
                 SharedExpenses(),
                 SizedBox(height: spacing(0.015)),

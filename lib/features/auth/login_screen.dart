@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:zaera_app/core/constant.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/auth/auth_controller.dart';
-import 'package:zaera_app/services/profile_service.dart';
 import 'package:zaera_app/widgets/custom_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   //Auth Servicds
   final authServices = AuthController();
+  String? userName;
 
   void login() async {
     final email = emailController.text.trim();
@@ -38,7 +39,20 @@ class _LoginScreenState extends State<LoginScreen> {
         password,
       );
       if (response.user != null) {
-        context.goNamed('home');
+        // Fetch user's name from zaera_users
+        final user = response.user!;
+        final profile =
+            await Supabase.instance.client
+                .from('zaera_users')
+                .select('name')
+                .eq('id', user.id)
+                .single();
+
+        setState(() {
+          userName = profile['name'];
+        });
+        print("User Name is: $userName");
+        context.goNamed('home', extra: userName);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Try Again... !! Login Failed ")),
@@ -90,19 +104,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // HEADING
                     Text(
-                      'Hey Fatema',
-                      style: GoogleFonts.urbanist(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.brown,
-                      ),
-                    ),
-                    SizedBox(height: 0.5),
-                    Text(
                       'Welcome Back',
                       style: Theme.of(context).textTheme.displayLarge,
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: 0.5),
+                    Text(
+                      'Enter your detail to get started',
+                      style: GoogleFonts.urbanist(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.brown.withOpacity(0.75),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
 
                     CustomInput(
                       controller: emailController,

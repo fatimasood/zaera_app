@@ -28,17 +28,21 @@ final GoRouter appRoutes = GoRouter(
     GoRoute(
       path: '/home',
       name: 'home',
-      builder: (context, state) => const HomeScreen(),
+      builder: (context, state) {
+        final userName = state.extra as String?;
+        return HomeScreen(userName: userName ?? '');
+      },
       redirect: (context, state) {
         final session = Supabase.instance.client.auth.currentSession;
         if (session == null) return '/login';
-        return null;
+        return null; // No redirect
       },
     ),
+
     GoRoute(
       path: '/profile',
       name: 'profile',
-      builder: (context, state) => const UserProfile(),
+      builder: (context, state) => const UserProfile(userName: ''),
     ),
     GoRoute(
       path: '/notifications',

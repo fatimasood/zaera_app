@@ -6,7 +6,8 @@ import 'package:zaera_app/features/auth/auth_controller.dart';
 import 'package:zaera_app/features/profile/widgets/user_profile_image.dart';
 
 class UserProfile extends StatefulWidget {
-  const UserProfile({super.key});
+  final String userName;
+  const UserProfile({super.key, required this.userName});
 
   @override
   State<UserProfile> createState() => _UserProfileState();

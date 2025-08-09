@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class Greetings extends StatelessWidget {
-  const Greetings({super.key});
+  final String userName;
+  const Greetings({super.key, required this.userName});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
+
       children: [
         //greetings + user name
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Hey! userName 👋',
+            'Hey! $userName👋',
             style: Theme.of(context).textTheme.displayLarge,
           ),
         ),

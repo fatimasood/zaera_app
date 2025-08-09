@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:zaera_app/app/about_us.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 import 'package:zaera_app/features/group/all_groups.dart';
@@ -10,7 +11,8 @@ import 'package:zaera_app/app/bottom_navigationbar.dart';
 import 'package:zaera_app/app/drawar.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String userName;
+  const HomeScreen({super.key, required this.userName});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,13 +22,55 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
-  final List<Widget> _pages = [
-    HomeView(),
-    UserProfile(),
-    AllGroups(),
-    Settings(),
-    AboutUs(),
-  ];
+  late List<Widget> _pages;
+  String? _userName;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _userName = widget.userName;
+    // if not passed, fetch from DB
+    if (_userName == null || _userName!.isEmpty) {
+      _fetchUserName();
+    }
+
+    _pages = [
+      HomeView(userName: widget.userName),
+      UserProfile(userName: widget.userName),
+      AllGroups(),
+      Settings(),
+      AboutUs(),
+    ];
+  }
+
+  // fetch user name
+
+  Future<void> _fetchUserName() async {
+    final user = Supabase.instance.client.auth.currentUser;
+    if (user != null) {
+      final response =
+          await Supabase.instance.client
+              .from('zaera_users')
+              .select('name')
+              .eq('id', user.id)
+              .maybeSingle();
+
+      if (response != null && response['name'] != null) {
+        setState(() {
+          _userName = response['name'];
+          // update _pages so children get the name
+          _pages = [
+            HomeView(userName: _userName ?? ""),
+            UserProfile(userName: _userName ?? ""),
+            AllGroups(),
+            Settings(),
+            AboutUs(),
+          ];
+        });
+      }
+    }
+  }
 
   void _onBottomNavItemTapped(int index) {
     setState(() {
