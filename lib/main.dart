@@ -18,6 +18,8 @@ void main() async {
     }
   }
 
+  //supabase setup
+
   final supabaseUrl = dotenv.env['SUPABASE_URL'];
   final supabaseKey = dotenv.env['SUPABASE_ANON_KEY'];
 
@@ -25,9 +27,9 @@ void main() async {
     throw Exception('SUPABASE_URL or SUPABASE_ANON_KEY not found in .env');
   }
 
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  //supabase setup
   await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
+
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(ProviderScope(child: const ZaeraApp()));
 }

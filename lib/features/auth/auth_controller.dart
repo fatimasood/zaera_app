@@ -34,35 +34,6 @@ class AuthController {
     return user?.email;
   }
 
-  //for profile
-
-  Future<void> createProfile({
-    required String userId,
-    required String name,
-    required String email,
-    String? imageUrl,
-    String? reminderMessage,
-  }) async {
-    await supabase.from('profiles').upsert({
-      'id': userId,
-      'name': name,
-      'email': email,
-      'profile_pic': imageUrl,
-      'reminder_message': reminderMessage,
-    });
-  }
-
-  //fetch profile
-  Future<Map<String, dynamic>?> fetchProfile() async {
-    final userId = supabase.auth.currentUser?.id;
-    if (userId == null) return null;
-
-    final response =
-        await supabase.from('userprofile').select().eq('id', userId).single();
-
-    return response;
-  }
-
   //sessions
   Session? getSession() => supabase.auth.currentSession;
   User? getUser() => supabase.auth.currentUser;

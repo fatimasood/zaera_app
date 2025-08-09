@@ -1,8 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:zaera_app/core/constant.dart';
+import 'package:zaera_app/database/user_database.dart';
 import 'package:zaera_app/features/auth/auth_controller.dart';
+import 'package:zaera_app/models/user/user_model.dart';
 import 'package:zaera_app/widgets/custom_input.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -16,6 +20,10 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  //database
+
+  final userdatabase = UserDatabase();
 
   String passwordStrength = 'Set Strong Password..!!';
 
@@ -142,26 +150,36 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: ElevatedButton(
                         onPressed: () async {
                           final authServices = AuthController();
-                          print(
-                            "Email: ${emailController.text}, Password: ${passwordController.text}",
-                          );
+                          if (kDebugMode) {
+                            print(
+                              "Email: ${emailController.text}, Password: ${passwordController.text}",
+                            );
+                          }
 
                           try {
                             final response = await authServices.signUp(
                               emailController.text,
                               passwordController.text,
                             );
-                            print(
-                              "Sign up with: ${emailController.text}, Password: ${passwordController.text}",
-                            );
+
+                            if (kDebugMode) {
+                              print(
+                                "Sign up with: ${emailController.text}, Password: ${passwordController.text}",
+                              );
+                            }
 
                             if (response.user != null) {
-                              // Save the profile data to Supabase
-                              await authServices.createProfile(
-                                userId: response.user!.id,
-                                name: nameController.text.trim(),
-                                email: emailController.text.trim(),
-                              );
+                              // save email and name in user database
+                              final user =
+                                  Supabase.instance.client.auth.currentUser;
+                              await Supabase.instance.client
+                                  .from('zaera_users')
+                                  .insert({
+                                    'id': user!.id,
+                                    'name': nameController.text,
+                                    'email': emailController.text,
+                                  });
+
                               context.goNamed('home');
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -181,7 +199,9 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ),
                               ),
                             );
-                            print("Error: ${e.toString()}");
+                            if (kDebugMode) {
+                              print("Error: ${e.toString()}");
+                            }
                           }
                         },
                         child: Text(

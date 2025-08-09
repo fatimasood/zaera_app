@@ -66,8 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
     final logoSize = screenHeight * 0.2;
     final buttonHeight = screenHeight * 0.06;
 
-    final name = ProfileService().getUserName();
-
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -92,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     // HEADING
                     Text(
-                      'Hey $name',
+                      'Hey Fatema',
                       style: GoogleFonts.urbanist(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
