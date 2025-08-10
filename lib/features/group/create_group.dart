@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:zaera_app/core/themes/colors.dart';
 
 void showCreateGroupDialog(BuildContext context) {
@@ -42,8 +43,8 @@ class _CreateGroupDialogState extends State<CreateGroupDialog> {
   String? _generatedLink;
   bool _linkGenerated = false;
 
-  String _generateFakeShortLink(String groupName) {
-    // Just a demo — in real life, call backend or Firebase Dynamic Link
+  /*String _generateFakeShortLink(String groupName) {
+    // Just a demo — in real life, call backend or Supabase Dynamic Link
     final random = Random();
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
     String randomCode =
@@ -51,7 +52,7 @@ class _CreateGroupDialogState extends State<CreateGroupDialog> {
     return 'https://zaera.app/g/$randomCode';
   }
 
-  void _handlePrimaryButton() {
+  void _handlePrimary() {
     if (_linkGenerated) {
       Clipboard.setData(ClipboardData(text: _generatedLink!));
       ScaffoldMessenger.of(context).showSnackBar(
@@ -83,6 +84,61 @@ class _CreateGroupDialogState extends State<CreateGroupDialog> {
         _generatedLink = link;
         _linkGenerated = true;
       });
+    }
+  }*/
+
+  // from supabase to create a group
+
+  Future<void> _handlePrimaryButton() async {
+    if (_linkGenerated) {
+      Clipboard.setData(ClipboardData(text: _generatedLink!));
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Link Copied..!")));
+
+      Future.delayed(const Duration(milliseconds: 300), () {
+        context.goNamed(
+          'split_bill',
+          queryParameters: {'link': _generatedLink!},
+        );
+      });
+    } else {
+      final groupName = _groupNameController.text.trim();
+      if (groupName.isEmpty) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text("Enter your group name.")));
+        return;
+      }
+
+      try {
+        final random = Random();
+        const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        String randomCode =
+            List.generate(6, (_) => chars[random.nextInt(chars.length)]).join();
+        final inviteLink = 'https://zaera.app/g/$randomCode';
+
+        final response =
+            await Supabase.instance.client
+                .from('groups')
+                .insert({'group_name': groupName, 'invite_link': inviteLink})
+                .select()
+                .single();
+
+        print(response);
+
+        setState(() {
+          _generatedLink = response['invite_link'];
+          _linkGenerated = true;
+        });
+      } catch (e) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Error creating group ")));
+
+        print("Error creating group $e ");
+      }
     }
   }
 

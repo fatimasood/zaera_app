@@ -3,19 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:zaera_app/core/themes/colors.dart';
 
-class UserProfileImage extends StatefulWidget {
-  const UserProfileImage({super.key});
+class UserProfileImage extends StatelessWidget {
+  final String userName;
 
-  @override
-  State<UserProfileImage> createState() => _UserProfileImageState();
-}
-
-class _UserProfileImageState extends State<UserProfileImage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  const UserProfileImage({super.key, required this.userName});
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -30,12 +21,12 @@ class _UserProfileImageState extends State<UserProfileImage> {
             child: CircleAvatar(
               radius: avatarRadius,
               backgroundColor: AppColors.tealGreen,
-              // backgroundImage: avatarImage,
+              backgroundImage: const AssetImage('lib/assets/images/avatar.png'),
             ),
           ),
           const SizedBox(height: 15.0),
           Text(
-            "personName",
+            userName,
             style: GoogleFonts.inter(
               fontSize: screenWidth * 0.06,
               fontWeight: FontWeight.w600,
@@ -43,7 +34,7 @@ class _UserProfileImageState extends State<UserProfileImage> {
             ),
           ),
           Text(
-            "@userName",
+            "@$userName.zaera",
             style: GoogleFonts.inter(color: AppColors.brown.withOpacity(0.65)),
           ),
         ],

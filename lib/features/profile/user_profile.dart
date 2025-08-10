@@ -36,7 +36,7 @@ class _UserProfileState extends State<UserProfile> {
                 Center(
                   child: Column(
                     children: [
-                      UserProfileImage(),
+                      UserProfileImage(userName: widget.userName),
                       SizedBox(height: screenHeight * 0.025),
                     ],
                   ),
