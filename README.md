@@ -15,6 +15,13 @@ Whether it’s trips, rent, or food with friends — Zaera helps you split, trac
 
 ---
 
+## 🛠️ Tech Stack  
+
+- **Frontend:** Flutter (cross-platform, responsive UI)  
+- **Backend & Storage:** Supabase 
+
+---
+
 ## 🚧 Status
 
 Zaera is currently in development.  
